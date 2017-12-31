@@ -1,0 +1,12 @@
+schema {
+  query: Query
+}
+
+type Query {
+  allProducts: [Product]
+}
+
+type Product {
+  name: String!
+  description: String!
+}

@@ -1,0 +1,28 @@
+<div class="wrapper">
+  <div class="col-md-12">
+    <h4>Welcome!</h4>
+  </div>
+  <div class="col-md-4">
+    <input
+      [(ngModel)]="query"
+      class="form-control"
+      placeholder="Search for a product"
+      (keyup.enter)="onSearch()"
+    />
+  </div>
+  <div class="content col-md-12">
+      <div *ngIf="isLoading; then spinnerTemplate else listTemplate"></div>
+
+      <ng-template #spinnerTemplate>
+        <div class="text-center">
+          <ps-spinner></ps-spinner>
+        </div>
+      </ng-template>
+
+      <ng-template #listTemplate>
+        <ps-products-list
+          [products]="products">
+        </ps-products-list>
+      </ng-template>
+  </div>
+</div>
