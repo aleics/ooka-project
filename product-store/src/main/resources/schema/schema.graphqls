@@ -9,4 +9,6 @@ type Query {
 type Product {
   name: String!
   description: String!
+  price: Float!
+  available: Boolean!
 }

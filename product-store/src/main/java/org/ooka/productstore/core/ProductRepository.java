@@ -10,9 +10,8 @@ public class ProductRepository {
 
     public ProductRepository() {
         products = new ArrayList<>();
-        //add some links to start off with
-        products.add(new Product("Product1", "Description1"));
-        products.add(new Product("Product2", "Description2"));
+        products.add(new Product("Product1", "Description1", 12.3f, true));
+        products.add(new Product("Product2", "Description2", 15.2f, false));
     }
 
     public List<Product> getAllProducts() {

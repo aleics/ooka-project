@@ -25,6 +25,8 @@ export class ProductsService {
         allProducts {
           name
           description
+          price
+          available
         }
       }
     `;

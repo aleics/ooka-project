@@ -1,5 +1,14 @@
 <div>
-  <h4>{{ product.name }}</h4>
-  <span> {{ product.description }}</span>
+  <div class="pull-right">
+    <span>${{ product.price }}</span>
+  </div>
+
+  <div>
+    <h4 class="title">{{ product.name }}</h4>
+    <i [ngClass]="(product.available) ? 'fa fa-check' : 'fa fa-times'"></i>
+
+    <br/><br/>
+
+    <span class="description"> {{ product.description }}</span>
+  </div>
 </div>
-<hr/>

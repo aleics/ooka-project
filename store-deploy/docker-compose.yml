@@ -23,7 +23,6 @@ services:
       store-network:
         ipv4_address: 172.10.0.5
 
-
 networks:
   store-network:
     driver: bridge
