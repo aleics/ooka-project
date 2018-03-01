@@ -21,7 +21,6 @@ A product store application for academic purposes.
  Create a new branch for features:
  - [ project name ] / [ feature name ]. For example: `psw/init-chat`.
 
-
  ## Meeting schedule
  - Tuesday
  - Friday

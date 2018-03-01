@@ -1,10 +1,10 @@
 # ooka-store-nginx
 ## Create Container
 ```
-sudo docker run --name nginx-server -i -t productstore
+sudo docker run --name nginx -i -t productstore
 ```
 
 ## Create image
 ```
-sudo docker build -t nginx-proxy .
+sudo docker build -t nginxstore .
 ```

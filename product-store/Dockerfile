@@ -1,8 +1,3 @@
-FROM nginx:1.9
-
-#  default conf for proxy service
-COPY ./default.conf /etc/nginx/conf.d/default.conf
-
 FROM openjdk:8
 
 ADD /target/productstore-0.0.1-SNAPSHOT.jar /productstore.jar
