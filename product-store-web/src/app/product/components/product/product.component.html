@@ -1,0 +1,14 @@
+<div class="wrapper">
+  <div class="col-md-12">
+    <div *ngIf="isLoading; then spinnerTemplate else productTemplate"></div>
+
+    <ng-template #spinnerTemplate>
+      <div class="text-center">
+        <ps-spinner></ps-spinner>
+      </div>
+    </ng-template>
+
+    <ng-template #productTemplate>
+    </ng-template>
+  </div>
+</div>

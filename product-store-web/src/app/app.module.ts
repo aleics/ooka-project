@@ -6,6 +6,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { StoreModule } from './store/store.module';
 import { GeneralModule } from './general/general.module';
+import { ProductModule } from './product/product.module';
 
 import {
   MatSidenavModule
@@ -23,6 +24,7 @@ import { appRoutes } from './app.routes';
     BrowserAnimationsModule,
     MatSidenavModule,
     StoreModule,
+    ProductModule,
     GeneralModule,
     ReactiveFormsModule,
     FormsModule,

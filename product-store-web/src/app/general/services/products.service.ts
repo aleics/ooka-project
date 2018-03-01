@@ -20,7 +20,7 @@ export class ProductsService {
   }
 
   public getProducts(): Observable<Product[]> {
-    const query: string = `
+    const query = `
       {
         allProducts {
           name
@@ -47,7 +47,7 @@ export class ProductsService {
       query
     };
 
-    let headers: Headers = new Headers();
+    const headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
     const options: RequestOptionsArgs = {

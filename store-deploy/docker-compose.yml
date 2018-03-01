@@ -11,22 +11,12 @@ services:
       - VIRTUAL_PROTO=http
     networks:
       store-network:
-        ipv4_address: 172.10.0.6
-#    network_mode: "bridge"
-  nginx-proxy:
-    image: nginx-proxy
-    restart: always
-    container_name: nginx-server
-    ports:
-      - "80:80"
-    networks:
-      store-network:
-        ipv4_address: 172.10.0.5
+        ipv4_address: 172.11.0.3
 
 networks:
   store-network:
     driver: bridge
     ipam:
      config:
-       - subnet: 172.10.0.0/16
-         gateway: 172.10.0.1
+       - subnet: 172.11.0.0/16
+         gateway: 172.11.0.1
