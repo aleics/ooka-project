@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class EndpointService {
 
-  private storeBaseUrl = 'http://172.11.0.3:8080/api';
+  private storeBaseUrl = 'http://local.product-store.com/api'; // local debugging: http://localhost:8080/api
 
   constructor() {}
 
