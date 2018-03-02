@@ -4,7 +4,9 @@
   </div>
 
   <div>
-    <h4 class="title">{{ product.name }}</h4>
+    <h4 class="title" [routerLink]="['/product', product.id]">
+      {{ product.name }}
+    </h4>
     <i [ngClass]="(product.available) ? 'fa fa-check' : 'fa fa-times'"></i>
 
     <br/><br/>
