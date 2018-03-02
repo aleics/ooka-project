@@ -9,6 +9,30 @@
     </ng-template>
 
     <ng-template #productTemplate>
+      <div>
+        <h3>{{ product.name }}</h3>
+        <div>
+          <div class="image-container">
+            <div class="image"></div>
+          </div>
+          <div class="info">
+            <h4>About this product: </h4>
+            <span>{{ product.description }}</span>
+
+            <hr/>
+
+            <strong>Availability:</strong>
+            <span>
+              <i [ngClass]="(product.available) ? 'fa fa-check' : 'fa fa-times'"></i>
+            </span>
+
+            <br/>
+
+            <strong>Price:</strong>
+            <span>${{ product.price }}</span>
+          </div>
+        </div>
+      </div>
     </ng-template>
   </div>
 </div>
