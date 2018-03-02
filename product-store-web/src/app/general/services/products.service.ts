@@ -23,6 +23,7 @@ export class ProductsService {
     const query = `
       {
         allProducts {
+          id
           name
           description
           price
