@@ -1,17 +1,21 @@
 version: '2'
 
 services:
+  nginx:
+    image: nginxstore
+    restart: always
+    container_name: nginx-store
+    networks:
+      store-network:
+        ipv4_address: 172.11.0.3
+
   store:
     image: productstore
     restart: always
     container_name: product-store
-    environment:
-      - VIRTUAL_HOST=local.product-store.com
-      - VIRTUAL_PORT=8080
-      - VIRTUAL_PROTO=http
     networks:
       store-network:
-        ipv4_address: 172.11.0.3
+        ipv4_address: 172.11.0.4
 
 networks:
   store-network:
