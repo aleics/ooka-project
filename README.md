@@ -8,9 +8,12 @@ A product store application for academic purposes.
  - User management backend (ALC).
  - Log in page module (NIG).
  - Product view (ALC).
+ - Add CI : travis (ALC).
 
  ## Branch topology
- ### develop
+ It will be defined a single `develop` branch. The different feature branches will be divided by project topology as defined in the next section.
+
+### project topologies
  - product-store-web: `psw-dev`
  - product-store: `ps-dev`
  - product-deploy: `d-dev`
