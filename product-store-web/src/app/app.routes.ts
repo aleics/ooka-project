@@ -9,11 +9,11 @@ export const appRoutes: Routes = [
     component: HomeComponent
   },
   { path: '',
-    redirectTo: '/home',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
-    path: 'product',
+    path: 'product/:productId',
     component: ProductComponent
   },
   { path: '**', component: PageNotFoundComponent }
