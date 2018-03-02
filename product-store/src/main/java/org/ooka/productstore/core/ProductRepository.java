@@ -14,11 +14,20 @@ public class ProductRepository {
         products.add(new Product("5678","Product2", "Description2", 15.2f, false));
     }
 
-    public List<Product> getAllProducts() {
-        return products;
+    public List<Product> getAllProducts(ProductFilter filter) {
+        List<Product> allProducts = new ArrayList<>(products);
+
+        if (filter != null) {
+            allProducts.removeIf(product ->
+                    !product.getId().equals(filter.getId())
+            );
+        }
+
+        return allProducts;
     }
 
     public void saveProduct(Product product) {
         products.add(product);
     }
+
 }
