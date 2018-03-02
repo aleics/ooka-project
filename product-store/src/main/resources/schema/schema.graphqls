@@ -3,7 +3,11 @@ schema {
 }
 
 type Query {
-  allProducts: [Product]
+  allProducts(filter: ProductFilter): [Product]
+}
+
+input ProductFilter {
+  id: String
 }
 
 type Product {
