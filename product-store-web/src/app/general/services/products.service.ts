@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { EndpointService } from './endpoint.service';
-import { Product, GraphQLRequest } from '../models';
+import { Product, GraphQLRequest, ProductFilter } from '../models';
 import { Http, RequestOptionsArgs, Headers } from '@angular/http';
 import { HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -40,6 +40,31 @@ export class ProductsService {
         }
 
         return <Product[]>response.data.allProducts;
+      });
+  }
+
+  public getProduct(filter: ProductFilter): Observable<Product> {
+    const queryFilter = `filter: { id: "${filter.id}" }`;
+    const query = `
+      {
+        allProducts(${queryFilter}) {
+          id
+          name
+          description
+          price
+          available
+        }
+      }
+    `;
+
+    return this.executeQuery(query)
+      .map((response) => {
+        if (response.error) {
+          console.error(response.error);
+          return null;
+        }
+
+        return <Product>response.data.allProducts[0];
       });
   }
 
