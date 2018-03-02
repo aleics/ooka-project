@@ -10,6 +10,7 @@ import {
   ProductListItemComponent
 } from './components';
 import { GeneralModule } from '../general/general.module';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { GeneralModule } from '../general/general.module';
     GeneralModule,
     BrowserModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   exports: [
     HomeComponent,
