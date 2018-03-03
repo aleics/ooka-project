@@ -7,13 +7,13 @@ import { Product } from '../../../general/models/index';
 @Component({
   selector: 'ps-home',
   templateUrl: './home.component.html',
-  styleUrls: ["./home.component.styl"]
+  styleUrls: ['./home.component.styl']
 })
 export class HomeComponent implements OnInit {
 
-  private query: string;
-  private isLoading: boolean = true;
-  private products: Product[] = [];
+  query: string;
+  isLoading = true;
+  products: Product[] = [];
 
   constructor(
     private router: ActivatedRoute,
@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.query = this.router.snapshot.queryParams["q"];
+    this.query = this.router.snapshot.queryParams['q'];
     this.productsService.getProducts()
       .subscribe((products) => {
         this.products = products;

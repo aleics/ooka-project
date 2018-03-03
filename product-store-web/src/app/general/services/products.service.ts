@@ -3,7 +3,7 @@ import { EndpointService } from './endpoint.service';
 import { Product, GraphQLRequest } from '../models';
 import { Http, RequestOptionsArgs, Headers } from '@angular/http';
 import { HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/map';
 

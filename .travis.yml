@@ -13,6 +13,8 @@ matrix:
       node_js:
         - '5.6'
       sudo: required
+      before_install:
+        - if [[ `npm -v` != 5.6.0* ]]; then npm i -g npm@5.6.0; fi
       before_script:
         - cd product-store-web
       script:
