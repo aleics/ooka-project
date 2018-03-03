@@ -3,14 +3,17 @@
 .topbar
   height: 35px
   background-color: $primary
-  ps-menu-icon
+  ps-menu-icon, .link
     height: 34px
-    width: 34px
     display: inline-block
-    vertical-align: middle
-    padding: 4px
     cursor: pointer
     &:hover
       background-color: $primary-hover
+  ps-menu-icon
+    width: 34px
+    padding: 4px
+    vertical-align: middle
+  .link
+    padding: 4px 8px
   span
     color: white
