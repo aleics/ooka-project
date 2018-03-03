@@ -12,7 +12,11 @@ public class Query implements GraphQLQueryResolver {
         this.productRepository = productRepository;
     }
 
-    public List<Product> allProducts(ProductFilter filter) {
-        return productRepository.getAllProducts(filter);
+    public List<Product> allProducts() {
+        return productRepository.getAllProducts();
+    }
+
+    public Product product(ProductFilter filter) {
+        return productRepository.getProduct(filter);
     }
 }
