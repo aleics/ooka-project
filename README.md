@@ -1,4 +1,7 @@
 # ooka-project
+
+[![Build Status](https://api.travis-ci.org/aleics/ooka-project.svg?branch=develop)](https://travis-ci.org/aleics/chatter)
+
 A product store application for academic purposes.
 
 ## Steps
@@ -8,7 +11,7 @@ A product store application for academic purposes.
  - User management backend (ALC).
  - Log in page module (NIG).
  - Product view (ALC).
- - Add CI : travis (ALC).
+ - ~~Add CI : travis (ALC)~~.
 
  ## Branch topology
  It will be defined a single `develop` branch. The different feature branches will be divided by project topology as defined in the next section.
