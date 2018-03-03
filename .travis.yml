@@ -15,6 +15,7 @@ matrix:
       sudo: required
       before_install:
         - npm install -g npm@5.6.0
+        - npm install -g angular-cli
       before_script:
         - cd product-store-web
       script:
