@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
 import { ProductComponent } from './components';
 import { GeneralModule } from '../general/general.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -10,7 +10,7 @@ import { GeneralModule } from '../general/general.module';
   ],
   imports: [
     BrowserModule,
-    HttpModule,
+    HttpClientModule,
     GeneralModule
   ],
   exports: [

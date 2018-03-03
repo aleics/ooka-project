@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { EndpointService } from './endpoint.service';
 import { Product, GraphQLRequest } from '../models';
-import { Http, RequestOptionsArgs, Headers } from '@angular/http';
-import { HttpParams } from '@angular/common/http';
+import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/map';
@@ -14,7 +13,7 @@ export class ProductsService {
 
   constructor(
     endpointService: EndpointService,
-    private http: Http
+    private http: HttpClient
   ) {
     this.baseUrl = endpointService.getProductsEndpoint();
   }
@@ -47,16 +46,11 @@ export class ProductsService {
       query
     };
 
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-
-    const options: RequestOptionsArgs = {
-      headers
-    };
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json');
 
     const body = JSON.stringify(graphQLRequest);
 
-    return this.http.post(this.baseUrl, body, options)
-      .map((response) => response.json());
+    return this.http.post(this.baseUrl, body, { headers });
   }
 }
