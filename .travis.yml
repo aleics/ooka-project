@@ -2,8 +2,6 @@ matrix:
   include:
     - language: java
       dist: trusty
-      jdk:
-        - openjdk8
       sudo: false
       before_script:
         - cd product-store
