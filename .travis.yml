@@ -20,4 +20,5 @@ matrix:
         - cd product-store-web
       script:
         - npm install
+        - ng lint
         - ng build
