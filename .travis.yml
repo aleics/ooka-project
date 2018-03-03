@@ -1,0 +1,17 @@
+matrix:
+  include:
+    - language: java
+      sudo: false
+      before_script:
+        - cd product-store
+      script:
+        - mvn clean verify
+
+    - language: node_js
+      sudo: required
+      dist: trusty
+      before_script:
+        - cd product-store-web
+      script:
+        - npm install
+        - ng build
