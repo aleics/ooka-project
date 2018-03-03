@@ -1,6 +1,7 @@
 matrix:
   include:
     - language: java
+      dist: trusty
       jdk:
         - openjdk8
       sudo: false
@@ -10,10 +11,10 @@ matrix:
         - mvn clean verify
 
     - language: node_js
+      dist: trusty
       node_js:
         - '5.6'
       sudo: required
-      dist: trusty
       before_script:
         - cd product-store-web
       script:
