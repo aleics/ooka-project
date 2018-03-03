@@ -10,7 +10,6 @@
       true,
       "check-space"
     ],
-    "component-selector": false,
     "curly": true,
     "deprecation": {
       "severity": "warn"
