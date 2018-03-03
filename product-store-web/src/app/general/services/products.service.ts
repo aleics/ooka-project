@@ -46,7 +46,7 @@ export class ProductsService {
     const queryFilter = `filter: { id: "${filter.id}" }`;
     const query = `
       {
-        allProducts(${queryFilter}) {
+        product(${queryFilter}) {
           id
           name
           description
@@ -63,7 +63,7 @@ export class ProductsService {
           return null;
         }
 
-        return <Product>response.data.allProducts[0];
+        return <Product>response.data.product;
       });
   }
 
