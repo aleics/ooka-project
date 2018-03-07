@@ -17,11 +17,11 @@ A product store application for academic purposes.
  It will be defined a single `develop` branch. The different feature branches will be divided by project topology as defined in the next section.
 
 ### project topologies
- - product-store-web: `psw-dev`
- - product-store: `ps-dev`
- - product-deploy: `d-dev`
- - user-management: `um-dev`
- - chat: `c-dev`
+ - product-store-web: `psw`
+ - product-store: `ps`
+ - product-deploy: `d`
+ - user-management: `um`
+ - chat: `c`
 
 ### feature branch
  Create a new branch for features:
