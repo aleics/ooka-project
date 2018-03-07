@@ -1,7 +1,6 @@
 package org.ooka.usermngmt.security;
 
 import org.ooka.usermngmt.services.JwtService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
 import org.springframework.security.core.Authentication;
