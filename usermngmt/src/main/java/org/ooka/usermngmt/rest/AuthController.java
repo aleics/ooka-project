@@ -12,11 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
     static final String PATH = "/api/v1/auth";
 
-    private JwtService jwtService;
-
     @Autowired
-    public AuthController(JwtService jwtService) {
-        this.jwtService = jwtService;
+    public AuthController() {
     }
 
     // Dummy rest endpoint for auth validation. The response header including the authorization header will be handled
