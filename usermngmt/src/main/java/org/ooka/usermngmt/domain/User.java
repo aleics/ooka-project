@@ -1,12 +1,20 @@
 package org.ooka.usermngmt.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.data.annotation.Id;
 import java.util.UUID;
 
 public class User {
+    @Id
     private String id;
+    private String email;
     private String userName;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     private AccountType accountType;
+    private UserRole userRole;
 
     public User() {}
 
@@ -25,6 +33,14 @@ public class User {
         this.id = id;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getUserName() {
         return userName;
     }
@@ -33,6 +49,7 @@ public class User {
         this.userName = userName;
     }
 
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
@@ -47,5 +64,13 @@ public class User {
 
     public void setAccountType(AccountType accountType) {
         this.accountType = accountType;
+    }
+
+    public UserRole getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
     }
 }

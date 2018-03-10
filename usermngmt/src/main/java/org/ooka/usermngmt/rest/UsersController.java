@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(UsersResource.PATH)
-public class UsersResource {
+@RequestMapping(UsersController.PATH)
+public class UsersController {
     static final String PATH = "/api/v1/users";
 
     private UsersService usersService;
 
     @Autowired
-    public UsersResource(UsersService usersService) {
+    public UsersController(UsersService usersService) {
         this.usersService = usersService;
     }
 
@@ -27,5 +27,15 @@ public class UsersResource {
         return ResponseEntity
                 .status(200)
                 .body(users);
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        User savedUser = this.usersService.createUser(user);
+        String userUrl = UsersController.PATH + "/" + savedUser.getId();
+        return ResponseEntity
+                .status(201)
+                .header("Location", userUrl)
+                .body(savedUser);
     }
 }

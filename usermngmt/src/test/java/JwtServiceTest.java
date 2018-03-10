@@ -21,20 +21,21 @@ public class JwtServiceTest {
     public static void generateUser() {
         user = new User();
         user.setId(UUID.randomUUID().toString());
-        user.setUserName("test@test.com");
+        user.setEmail("test@example.com");
+        user.setUserName("Test");
         user.setPassword("1234");
         user.setAccountType(AccountType.NORMAL);
     }
 
     @Test
     public void generateJwt() {
-        String token = jwtService.createUserJwt(user.getUserName());
+        String token = jwtService.createUserJwt(user.getEmail());
         Assert.assertNotNull(token);
     }
 
     @Test
     public void validateJwt() {
-        String token = jwtService.createUserJwt(user.getUserName());
+        String token = jwtService.createUserJwt(user.getEmail());
         Assert.assertNotNull(token);
 
         Assert.assertTrue(jwtService.validate(token));

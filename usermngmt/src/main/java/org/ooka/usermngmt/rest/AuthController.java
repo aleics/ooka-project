@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(AuthResource.PATH)
-public class AuthResource {
+@RequestMapping(AuthController.PATH)
+public class AuthController {
     static final String PATH = "/api/v1/auth";
 
     private JwtService jwtService;
 
     @Autowired
-    public AuthResource(JwtService jwtService) {
+    public AuthController(JwtService jwtService) {
         this.jwtService = jwtService;
     }
 
