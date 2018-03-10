@@ -12,11 +12,6 @@ Health Check
 
 To see your applications health enter url `http://localhost:8081/healthcheck`
 
-Create Container
----
-```
-sudo docker run --name local.product-store.com --hostname local.product-store.com -e VIRTUAL_HOST=local.product-store.com -e VIRTUAL_PORT=8080 -i -t productstore
-```
 
 Create image
 ---
