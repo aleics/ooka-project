@@ -4,9 +4,15 @@ schema {
 
 type Query {
   allProducts: [Product]
+  product(filter: ProductFilter!): Product
+}
+
+input ProductFilter {
+  id: String
 }
 
 type Product {
+  id: String!
   name: String!
   description: String!
   price: Float!
