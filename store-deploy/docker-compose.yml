@@ -17,6 +17,14 @@ services:
       store-network:
         ipv4_address: 172.11.0.4
 
+  store-web:
+    image: productstore-web
+    restart: always
+    container_name: productstore-web
+    networks:
+      store-network:
+        ipv4_address: 172.11.0.2
+
   usermngmt:
     image: usermngmt
     container_name: usermngmt
