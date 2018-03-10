@@ -17,6 +17,14 @@ services:
       store-network:
         ipv4_address: 172.11.0.4
 
+  usermngmt:
+    image: usermngmt
+    container_name: usermngmt
+    networks:
+      store-network:
+        ipv4_address: 172.11.0.5
+
+
 networks:
   store-network:
     driver: bridge
