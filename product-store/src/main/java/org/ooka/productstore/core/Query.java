@@ -12,8 +12,8 @@ public class Query implements GraphQLQueryResolver {
         this.productRepository = productRepository;
     }
 
-    public List<Product> allProducts() {
-        return productRepository.getAllProducts();
+    public List<Product> allProducts(AllProductsFilter filter) {
+        return productRepository.getAllProducts(filter);
     }
 
     public Product product(ProductFilter filter) {

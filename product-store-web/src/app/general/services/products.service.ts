@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { EndpointService } from './endpoint.service';
-import { Product, GraphQLRequest, ProductFilter } from '../models';
+import { Product, GraphQLRequest, ProductFilter, AllProductsFilter } from '../models';
 import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import * as _ from 'lodash';
 
 import 'rxjs/add/operator/map';
 
@@ -18,10 +19,11 @@ export class ProductsService {
     this.baseUrl = endpointService.getProductsEndpoint();
   }
 
-  public getProducts(): Observable<Product[]> {
+  public getProducts(filter: AllProductsFilter = null): Observable<Product[]> {
+    const queryFilter = filter ? `(filter: { q: "${filter.q}" })` : '';
     const query = `
       {
-        allProducts {
+        allProducts${queryFilter} {
           id
           name
           description
@@ -38,7 +40,7 @@ export class ProductsService {
           return null;
         }
 
-        return <Product[]>response.data.allProducts;
+        return <Product[]>_.get(response, 'data.allProducts');
       });
   }
 
@@ -63,7 +65,7 @@ export class ProductsService {
           return null;
         }
 
-        return <Product>response.data.product;
+        return <Product>_.get(response, 'data.product');
       });
   }
 
