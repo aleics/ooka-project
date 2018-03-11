@@ -26,7 +26,6 @@ public class UsersService implements UserDetailsService {
     }
 
     public User createUser(User user) {
-        user.setPassword(user.getPassword());
         return this.usersRepository.save(user);
     }
 
