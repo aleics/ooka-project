@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class EndpointService {
 
-  private storeBaseUrl = 'http://local.product-store.com/api'; // local debugging: http://localhost:8080/api
+  private storeBaseUrl = 'http://local.store.com'; // local debugging: http://localhost:8080/api
 
   constructor() {}
 
@@ -12,6 +12,10 @@ export class EndpointService {
   }
 
   public getProductsEndpoint(): string {
-    return `${this.storeBaseUrl}/graphql`;
+    return `${this.storeBaseUrl}/products/api`;
+  }
+
+  public getProductsGraphQLEndpoint(): string {
+    return `${this.getProductsEndpoint()}/v1/graphql`;
   }
 }

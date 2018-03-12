@@ -13,7 +13,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("/graphql")
+@Path("/v1/graphql")
 public class GraphQLResource {
 
     GraphQLSchemaBuilder graphQLSchemaBuilder;

@@ -16,7 +16,7 @@ export class ProductsService {
     endpointService: EndpointService,
     private http: HttpClient
   ) {
-    this.baseUrl = endpointService.getProductsEndpoint();
+    this.baseUrl = endpointService.getProductsGraphQLEndpoint();
   }
 
   public getProducts(filter: AllProductsFilter = null): Observable<Product[]> {
