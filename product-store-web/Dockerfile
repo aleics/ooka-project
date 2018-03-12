@@ -1,4 +1,5 @@
 FROM nginx
 
-#  default conf for proxy service
+ADD dist /usr/share/nginx/html
+
 ADD default.conf /etc/nginx/conf.d/
