@@ -4,15 +4,15 @@ import com.coxautodev.graphql.tools.SchemaParser;
 import graphql.GraphQL;
 import graphql.schema.GraphQLSchema;
 import org.ooka.productstore.core.ProductsRepository;
-import org.ooka.productstore.db.ProductsDAO;
+import org.skife.jdbi.v2.DBI;
 
 public class GraphQLSchemaBuilder {
     private static GraphQLSchemaBuilder instance;
     private GraphQLSchema schema;
     private GraphQL graphql;
 
-    private GraphQLSchemaBuilder(ProductsDAO productsDAO) {
-        ProductsRepository productsRepository = new ProductsRepository(productsDAO);
+    private GraphQLSchemaBuilder(DBI jdbi) {
+        ProductsRepository productsRepository = new ProductsRepository(jdbi);
         schema = SchemaParser.newParser()
                 .file("schema/schema.graphqls")
                 .resolvers(new Query(productsRepository), new Mutation(productsRepository))
@@ -23,9 +23,9 @@ public class GraphQLSchemaBuilder {
                 .build();
     }
 
-    public static GraphQLSchemaBuilder getInstance(ProductsDAO productsDAO) {
+    public static GraphQLSchemaBuilder getInstance(DBI jdbi) {
         if (instance == null) {
-            instance = new GraphQLSchemaBuilder(productsDAO);
+            instance = new GraphQLSchemaBuilder(jdbi);
         }
         return instance;
     }

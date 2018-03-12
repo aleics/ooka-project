@@ -2,46 +2,65 @@ package org.ooka.productstore.core;
 
 
 import org.ooka.productstore.db.ProductsDAO;
+import org.skife.jdbi.v2.DBI;
+import org.skife.jdbi.v2.Handle;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 public class ProductsRepository {
 
-    private ProductsDAO productsDAO;
+    private DBI jdbi;
 
-    public ProductsRepository(ProductsDAO productsDAO) {
-        this.productsDAO = productsDAO;
+    private ProductsDAO getProductsDAO() {
+        try {
+            Handle handle = jdbi.open();
+            return handle.attach(ProductsDAO.class);
+        } catch (Exception e) {
+            System.out.println("ERROR: Couldn't attach ProductsDAO to JDBI instance. Exception: " + e);
+            return null;
+        }
+    }
+
+    public ProductsRepository(DBI jdbi) {
+        this.jdbi = jdbi;
 
         try {
-            this.productsDAO.createProductsTable();
+            this.getProductsDAO().createProductsTable();
         } catch (Exception e) {
-            System.out.println("WARN: `products` table couldn't be created. Possibly, already defined");
+            System.out.println("WARN: `products` table couldn't be created. Possibly, already defined. Exception: " + e);
         }
     }
 
     public List<Product> getAllProducts(AllProductsFilter filter) {
-        if (filter != null) {
-            return this.productsDAO.findProductByNameOrDescription(filter.getQuery());
-        }
-        return this.productsDAO.findAllProducts();
+        ProductsDAO productsDAO = this.getProductsDAO();
+
+        List<Product> products = filter != null ?
+                productsDAO.findProductByNameOrDescription(filter.getQuery()) :
+                productsDAO.findAllProducts();
+
+        productsDAO.close();
+        return products;
     }
 
     public Product getProduct(ProductFilter filter) {
-        return this.productsDAO.findProductById(filter.getId());
+        ProductsDAO productsDAO = this.getProductsDAO();
+        Product product = productsDAO.findProductById(filter.getId());
 
+        productsDAO.close();
+        return product;
     }
 
     public void saveProduct(Product product) {
-        this.productsDAO.insert(
+        ProductsDAO productsDAO = this.getProductsDAO();
+        productsDAO.insert(
                 product.getId(),
                 product.getName(),
                 product.getDescription(),
                 product.getPrice(),
                 product.getAvailable()
         );
+
+        productsDAO.close();
     }
 
 }

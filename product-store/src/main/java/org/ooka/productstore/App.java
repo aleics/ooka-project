@@ -6,8 +6,6 @@ import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 import org.ooka.productstore.api.GraphQLResource;
-import org.ooka.productstore.core.ProductsRepository;
-import org.ooka.productstore.db.ProductsDAO;
 import org.ooka.productstore.health.GraphQLHealthCheck;
 import org.skife.jdbi.v2.DBI;
 
@@ -50,10 +48,9 @@ public class App extends Application<AppConfiguration> {
 
         final DBIFactory factory = new DBIFactory();
         final DBI jdbi = factory.build(environment, configuration.getDataSourceFactory(), "postgresql");
-        final ProductsDAO productsDAO = jdbi.onDemand(ProductsDAO.class);
 
         environment.healthChecks().register("graphQL", new GraphQLHealthCheck());
-        environment.jersey().register(new GraphQLResource(productsDAO));
+        environment.jersey().register(new GraphQLResource(jdbi));
     }
 
 }
