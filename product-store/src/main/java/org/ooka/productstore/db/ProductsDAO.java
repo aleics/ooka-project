@@ -4,6 +4,7 @@ import org.ooka.productstore.core.Product;
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.SqlUpdate;
+import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
 
 import java.util.List;
 
@@ -20,13 +21,16 @@ public interface ProductsDAO {
             @Bind("available") Boolean available
     );
 
+    @Mapper(ProductsMapper.class)
     @SqlQuery("select * from products")
     List<Product> findAllProducts();
 
+    @Mapper(ProductsMapper.class)
     @SqlQuery("select * from products where id = :id")
     Product findProductById(@Bind("id") String id);
 
-    @SqlQuery("select * from products where :q like '%' || name || '%' or :q like '%' || description || '%'")
+    @Mapper(ProductsMapper.class)
+    @SqlQuery("select * from products where name like '%' || :q || '%' or description like '%' || :q || '%'")
     List<Product> findProductByNameOrDescription(@Bind("q") String q);
 
     void close();

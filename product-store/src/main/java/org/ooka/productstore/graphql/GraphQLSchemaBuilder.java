@@ -3,9 +3,7 @@ package org.ooka.productstore.graphql;
 import com.coxautodev.graphql.tools.SchemaParser;
 import graphql.GraphQL;
 import graphql.schema.GraphQLSchema;
-import org.ooka.productstore.core.Product;
 import org.ooka.productstore.core.ProductsRepository;
-import org.ooka.productstore.core.Query;
 import org.ooka.productstore.db.ProductsDAO;
 
 public class GraphQLSchemaBuilder {
@@ -17,7 +15,7 @@ public class GraphQLSchemaBuilder {
         ProductsRepository productsRepository = new ProductsRepository(productsDAO);
         schema = SchemaParser.newParser()
                 .file("schema/schema.graphqls")
-                .resolvers(new Query(productsRepository))
+                .resolvers(new Query(productsRepository), new Mutation(productsRepository))
                 .build()
                 .makeExecutableSchema();
 

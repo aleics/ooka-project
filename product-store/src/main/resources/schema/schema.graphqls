@@ -1,5 +1,6 @@
 schema {
   query: Query
+  mutation: Mutation
 }
 
 type Query {
@@ -21,4 +22,8 @@ type Product {
   description: String!
   price: Float!
   available: Boolean!
+}
+
+type Mutation {
+  createProduct(name: String!, description: String, price: Float!, available: Boolean!): Product
 }

@@ -1,6 +1,10 @@
-package org.ooka.productstore.core;
+package org.ooka.productstore.graphql;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import org.ooka.productstore.core.AllProductsFilter;
+import org.ooka.productstore.core.Product;
+import org.ooka.productstore.core.ProductFilter;
+import org.ooka.productstore.core.ProductsRepository;
 
 import java.util.List;
 
