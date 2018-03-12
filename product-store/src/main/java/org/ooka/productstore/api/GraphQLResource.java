@@ -3,6 +3,7 @@ package org.ooka.productstore.api;
 import graphql.ExecutionInput;
 import graphql.ExecutionResult;
 import graphql.GraphQL;
+import org.ooka.productstore.db.ProductsDAO;
 import org.ooka.productstore.graphql.GraphQLRequest;
 import org.ooka.productstore.graphql.GraphQLResult;
 import org.ooka.productstore.graphql.GraphQLSchemaBuilder;
@@ -18,8 +19,8 @@ public class GraphQLResource {
 
     GraphQLSchemaBuilder graphQLSchemaBuilder;
 
-    public GraphQLResource() {
-        graphQLSchemaBuilder = GraphQLSchemaBuilder.getInstance();
+    public GraphQLResource(ProductsDAO productsDAO) {
+        graphQLSchemaBuilder = GraphQLSchemaBuilder.getInstance(productsDAO);
     }
 
     @POST

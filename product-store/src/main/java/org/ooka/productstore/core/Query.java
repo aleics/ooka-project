@@ -6,17 +6,17 @@ import java.util.List;
 
 public class Query implements GraphQLQueryResolver {
 
-    private final ProductRepository productRepository;
+    private final ProductsRepository productsRepository;
 
-    public Query(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public Query(ProductsRepository productsRepository) {
+        this.productsRepository = productsRepository;
     }
 
     public List<Product> allProducts(AllProductsFilter filter) {
-        return productRepository.getAllProducts(filter);
+        return productsRepository.getAllProducts(filter);
     }
 
     public Product product(ProductFilter filter) {
-        return productRepository.getProduct(filter);
+        return productsRepository.getProduct(filter);
     }
 }
