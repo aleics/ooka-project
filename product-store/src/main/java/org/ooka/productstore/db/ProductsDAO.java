@@ -30,7 +30,7 @@ public interface ProductsDAO {
     Product findProductById(@Bind("id") String id);
 
     @Mapper(ProductsMapper.class)
-    @SqlQuery("select * from products where name like '%' || :q || '%' or description like '%' || :q || '%'")
+    @SqlQuery("select * from products where name ilike '%' || :q || '%' or description ilike '%' || :q || '%'")
     List<Product> findProductByNameOrDescription(@Bind("q") String q);
 
     void close();
