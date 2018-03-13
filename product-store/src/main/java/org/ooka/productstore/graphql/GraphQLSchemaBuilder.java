@@ -3,19 +3,19 @@ package org.ooka.productstore.graphql;
 import com.coxautodev.graphql.tools.SchemaParser;
 import graphql.GraphQL;
 import graphql.schema.GraphQLSchema;
-import org.ooka.productstore.core.ProductRepository;
-import org.ooka.productstore.core.Query;
+import org.ooka.productstore.core.ProductsRepository;
+import org.skife.jdbi.v2.DBI;
 
 public class GraphQLSchemaBuilder {
     private static GraphQLSchemaBuilder instance;
     private GraphQLSchema schema;
     private GraphQL graphql;
 
-    private GraphQLSchemaBuilder() {
-        ProductRepository productRepository = new ProductRepository();
+    private GraphQLSchemaBuilder(DBI jdbi) {
+        ProductsRepository productsRepository = new ProductsRepository(jdbi);
         schema = SchemaParser.newParser()
                 .file("schema/schema.graphqls")
-                .resolvers(new Query(productRepository))
+                .resolvers(new Query(productsRepository), new Mutation(productsRepository))
                 .build()
                 .makeExecutableSchema();
 
@@ -23,9 +23,9 @@ public class GraphQLSchemaBuilder {
                 .build();
     }
 
-    public static GraphQLSchemaBuilder getInstance() {
+    public static GraphQLSchemaBuilder getInstance(DBI jdbi) {
         if (instance == null) {
-            instance = new GraphQLSchemaBuilder();
+            instance = new GraphQLSchemaBuilder(jdbi);
         }
         return instance;
     }

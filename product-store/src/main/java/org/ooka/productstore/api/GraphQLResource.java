@@ -6,9 +6,13 @@ import graphql.GraphQL;
 import org.ooka.productstore.graphql.GraphQLRequest;
 import org.ooka.productstore.graphql.GraphQLResult;
 import org.ooka.productstore.graphql.GraphQLSchemaBuilder;
+import org.skife.jdbi.v2.DBI;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -18,8 +22,8 @@ public class GraphQLResource {
 
     GraphQLSchemaBuilder graphQLSchemaBuilder;
 
-    public GraphQLResource() {
-        graphQLSchemaBuilder = GraphQLSchemaBuilder.getInstance();
+    public GraphQLResource(DBI jdbi) {
+        graphQLSchemaBuilder = GraphQLSchemaBuilder.getInstance(jdbi);
     }
 
     @POST

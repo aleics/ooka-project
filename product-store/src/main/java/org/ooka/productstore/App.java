@@ -1,11 +1,13 @@
 package org.ooka.productstore;
 
 import io.dropwizard.Application;
+import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 import org.ooka.productstore.api.GraphQLResource;
 import org.ooka.productstore.health.GraphQLHealthCheck;
+import org.skife.jdbi.v2.DBI;
 
 import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
@@ -30,9 +32,6 @@ public class App extends Application<AppConfiguration> {
     @Override
     public void run(final AppConfiguration configuration,
                     final Environment environment) {
-        environment.healthChecks().register("graphQL", new GraphQLHealthCheck());
-        environment.jersey().register(new GraphQLResource());
-
         // Enable CORS headers
         final FilterRegistration.Dynamic cors =
                 environment.servlets().addFilter("CORS", CrossOriginFilter.class);
@@ -46,6 +45,12 @@ public class App extends Application<AppConfiguration> {
         cors.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
 
         cors.setInitParameter(CrossOriginFilter.CHAIN_PREFLIGHT_PARAM, Boolean.FALSE.toString());
+
+        final DBIFactory factory = new DBIFactory();
+        final DBI jdbi = factory.build(environment, configuration.getDataSourceFactory(), "postgresql");
+
+        environment.healthChecks().register("graphQL", new GraphQLHealthCheck());
+        environment.jersey().register(new GraphQLResource(jdbi));
     }
 
 }
