@@ -14,10 +14,12 @@ import {
 
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
+import { InitComponent } from './init.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    InitComponent
   ],
   imports: [
     BrowserModule,
