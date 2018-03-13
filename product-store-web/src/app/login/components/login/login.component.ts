@@ -8,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
 
   constructor() { }
-
+  submitted = false;
   ngOnInit() {
   }
+
+  onSubmit() { this.submitted = true; }
 
 }
