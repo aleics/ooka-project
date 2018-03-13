@@ -7,6 +7,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { StoreModule } from './store/store.module';
 import { GeneralModule } from './general/general.module';
 import { ProductModule } from './product/product.module';
+import { LoginModule } from './login/login.module';
 
 import {
   MatSidenavModule
@@ -28,6 +29,7 @@ import { InitComponent } from './init.component';
     StoreModule,
     ProductModule,
     GeneralModule,
+    LoginModule,
     ReactiveFormsModule,
     FormsModule,
 
