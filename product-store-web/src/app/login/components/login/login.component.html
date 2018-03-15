@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Login</h1>
-  <form>
+  <form [formGroup]="loginForm" novalidate (ngSubmit)="save(loginForm.username, loginForm.password)">
     <div class = "form-group">
       <label for="name">Name</label>
       <input type="text" class="form-control" id="name" required>
