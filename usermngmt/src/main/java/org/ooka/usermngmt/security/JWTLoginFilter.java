@@ -2,9 +2,7 @@ package org.ooka.usermngmt.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.ooka.usermngmt.domain.CredentialsMessage;
-import org.ooka.usermngmt.domain.User;
 import org.ooka.usermngmt.services.JwtService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -17,6 +15,7 @@ import javax.servlet.FilterChain;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Collections;
 
 public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
@@ -51,6 +50,15 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
             FilterChain chain,
             Authentication auth) {
         String token = jwtService.createUserJwt(auth.getName());
+
         res.addHeader(HttpHeaders.AUTHORIZATION, TOKEN_PREFIX + " " + token);
+
+        try {
+            PrintWriter printWriter = res.getWriter();
+            printWriter.write(auth.getAuthorities().toString());
+            printWriter.flush();
+        } catch (Exception e) {
+            System.out.println("ERROR: Couldn't set the body in the login request. Exception: " + e.getMessage());
+        }
     }
 }
