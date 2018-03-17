@@ -7,6 +7,7 @@ import io.dropwizard.setup.Environment;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 import org.ooka.productstore.api.GraphQLResource;
 import org.ooka.productstore.health.GraphQLHealthCheck;
+import org.ooka.productstore.security.AuthRequestFilter;
 import org.skife.jdbi.v2.DBI;
 
 import javax.servlet.DispatcherType;
@@ -51,6 +52,9 @@ public class App extends Application<AppConfiguration> {
 
         environment.healthChecks().register("graphQL", new GraphQLHealthCheck());
         environment.jersey().register(new GraphQLResource(jdbi));
+
+        // Register authorization filter for all the resources of th service
+        environment.jersey().register(AuthRequestFilter.class);
     }
 
 }
