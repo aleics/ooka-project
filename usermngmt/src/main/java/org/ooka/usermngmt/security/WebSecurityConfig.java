@@ -1,5 +1,6 @@
 package org.ooka.usermngmt.security;
 
+import org.ooka.usermngmt.domain.AccountType;
 import org.ooka.usermngmt.domain.User;
 import org.ooka.usermngmt.domain.UserRole;
 import org.ooka.usermngmt.services.UsersService;
@@ -41,6 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         admin.setEmail("admin@example.com");
         admin.setPassword("admin");
         admin.setUserRole(UserRole.ADMIN);
+        admin.setAccountType(AccountType.PREMIUM);
 
 
         usersService.createUser(admin);
