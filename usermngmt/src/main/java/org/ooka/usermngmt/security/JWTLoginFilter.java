@@ -5,6 +5,7 @@ import org.ooka.usermngmt.domain.CredentialsMessage;
 import org.ooka.usermngmt.domain.User;
 import org.ooka.usermngmt.services.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -21,7 +22,6 @@ import java.util.Collections;
 public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
 
     static final String TOKEN_PREFIX = "Bearer";
-    static final String HEADER_STRING = "Authorization";
 
     JwtService jwtService = new JwtService();
 
@@ -51,6 +51,6 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
             FilterChain chain,
             Authentication auth) {
         String token = jwtService.createUserJwt(auth.getName());
-        res.addHeader(HEADER_STRING, TOKEN_PREFIX + " " + token);
+        res.addHeader(HttpHeaders.AUTHORIZATION, TOKEN_PREFIX + " " + token);
     }
 }
