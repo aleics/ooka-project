@@ -19,7 +19,7 @@ public class UserAuth implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> grantedAuthorityList = new ArrayList();
-        grantedAuthorityList.add(new SimpleGrantedAuthority(this.user.getUserRole().toString()));
+        grantedAuthorityList.add(new SimpleGrantedAuthority(this.user.getAccountType().toString()));
 
         return grantedAuthorityList;
     }
