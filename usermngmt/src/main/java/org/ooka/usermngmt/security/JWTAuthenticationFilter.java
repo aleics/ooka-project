@@ -1,6 +1,7 @@
 package org.ooka.usermngmt.security;
 
 import org.ooka.usermngmt.services.JwtService;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
 import org.springframework.security.core.Authentication;
@@ -20,7 +21,7 @@ public class JWTAuthenticationFilter extends GenericFilterBean {
                          ServletResponse response,
                          FilterChain filterChain)
             throws IOException, ServletException {
-        String token = ((HttpServletRequest)request).getHeader("Authorization");
+        String token = ((HttpServletRequest)request).getHeader(HttpHeaders.AUTHORIZATION);
         Authentication authentication = jwtService
                 .getAuthentication(token);
 
