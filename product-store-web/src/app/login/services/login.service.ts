@@ -35,7 +35,7 @@ export class LoginService {
           return {
             token: this.extractToken(authorization),
             accountType
-          }
+          };
         });
   }
 
