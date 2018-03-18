@@ -44,12 +44,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
         usersService.createUser(admin);
-        // Create a default admin account
-        // auth.inMemoryAuthentication()
-        //        .withUser("admin@example.com")
-        //        .password("{noop}admin")
-        //        .roles("ADMIN");
-
         auth.userDetailsService(usersService);
     }
 
