@@ -1,0 +1,7 @@
+/Users/glaser/dev/hbrs/codecamp/services/src/main/java/com/senacor/code/fullstack/chat/InitDatabaseOnStartupRunner.java
+/Users/glaser/dev/hbrs/codecamp/services/src/main/java/com/senacor/code/fullstack/chat/repository/ChannelRepository.java
+/Users/glaser/dev/hbrs/codecamp/services/src/main/java/com/senacor/code/fullstack/chat/domain/Channel.java
+/Users/glaser/dev/hbrs/codecamp/services/src/main/java/com/senacor/code/fullstack/chat/service/ChannelService.java
+/Users/glaser/dev/hbrs/codecamp/services/src/main/java/com/senacor/code/fullstack/chat/ChatApplication.java
+/Users/glaser/dev/hbrs/codecamp/services/src/main/java/com/senacor/code/fullstack/chat/RequestLoggingFilter.java
+/Users/glaser/dev/hbrs/codecamp/services/src/main/java/com/senacor/code/fullstack/chat/rest/ChannelController.java

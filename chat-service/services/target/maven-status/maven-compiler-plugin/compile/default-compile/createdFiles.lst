@@ -1,0 +1,7 @@
+com/senacor/code/fullstack/chat/repository/ChannelRepository.class
+com/senacor/code/fullstack/chat/RequestLoggingFilter.class
+com/senacor/code/fullstack/chat/ChatApplication.class
+com/senacor/code/fullstack/chat/service/ChannelService.class
+com/senacor/code/fullstack/chat/rest/ChannelController.class
+com/senacor/code/fullstack/chat/InitDatabaseOnStartupRunner.class
+com/senacor/code/fullstack/chat/domain/Channel.class
