@@ -26,8 +26,4 @@ export class EndpointService {
   public getLoginEndpoint(): string {
     return `${this.getUserMngmtEndpoint()}/v1/login`;
   }
-
-  public getAuthEndpoint(): string {
-    return `${this.getUserMngmtEndpoint()}/v1/auth`;
-  }
 }

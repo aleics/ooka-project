@@ -4,8 +4,10 @@ import { TokenData } from '../models';
 
 export function tokenGetter() {
   const storageData = localStorage.getItem('ps-login-info');
-  const data: TokenData = JSON.parse(storageData);
-  return data.token;
+  if (storageData) {
+    const data: TokenData = JSON.parse(storageData);
+    return data.token;
+  }
 }
 
 @Injectable()
