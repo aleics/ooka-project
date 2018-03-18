@@ -18,4 +18,16 @@ export class EndpointService {
   public getProductsGraphQLEndpoint(): string {
     return `${this.getProductsEndpoint()}/v1/graphql`;
   }
+
+  public getUserMngmtEndpoint(): string {
+    return `${this.storeBaseUrl}/usermngmt/api`;
+  }
+
+  public getLoginEndpoint(): string {
+    return `${this.getUserMngmtEndpoint()}/v1/login`;
+  }
+
+  public getAuthEndpoint(): string {
+    return `${this.getUserMngmtEndpoint()}/v1/auth`;
+  }
 }

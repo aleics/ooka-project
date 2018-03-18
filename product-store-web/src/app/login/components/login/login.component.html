@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Login</h1>
-  <form [formGroup]="loginForm" novalidate (ngSubmit)="save(loginForm.username, loginForm.password)">
-    <div class = "form-group">
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="form-group">
       <label for="name">Name</label>
       <input formControlName="username" type="text" class="form-control" id="name" required>
     </div>
@@ -9,6 +9,6 @@
       <label for="password">Password</label>
       <input formControlName="password" type="password" class="form-control" id="pw" required>
     </div>
-    <button type="submit" class="btn btn-success">login</button>
+    <button type="submit" class="btn btn-primary pull-right">login</button>
   </form>
 </div>

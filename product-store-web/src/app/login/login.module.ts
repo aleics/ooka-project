@@ -2,12 +2,31 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthGuardService } from './services/auth-guard.service';
+import { AuthService } from './services/auth.service';
+import { StorageService, tokenGetter } from './services/storage.service';
+import { LoginService } from './services/login.service';
+import { JwtModule } from '@auth0/angular-jwt';
 
 @NgModule({
   imports: [
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
+    JwtModule.forRoot({
+      config: {
+        tokenGetter
+      }
+    })
   ],
-  declarations: [LoginComponent]
+  declarations: [
+    LoginComponent
+  ],
+  providers: [
+    AuthGuardService,
+    AuthService,
+    LoginService,
+    StorageService
+  ]
 })
 export class LoginModule { }

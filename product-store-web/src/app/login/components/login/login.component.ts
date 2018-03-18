@@ -18,8 +18,8 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onSubmit(username: string, pw: string) {
-    console.log('Name' + this.loginForm.get('username') + ' PW: ' + this.loginForm.get('password'));
+  login() {
+    console.log(this.loginForm);
   }
 
 }
