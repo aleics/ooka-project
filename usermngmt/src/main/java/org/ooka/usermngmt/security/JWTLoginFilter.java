@@ -36,7 +36,7 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
             res.addHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, origin);
             res.addHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS, "GET, POST, PUT, DELETE");
             res.addHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS, "true");
-            res.addHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS, req.getHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS));
+            res.addHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS, "*");
             res.addHeader(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, HttpHeaders.AUTHORIZATION);
         }
 
