@@ -66,7 +66,6 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
         String token = jwtService.createUserJwt(auth.getName());
 
         res.addHeader(HttpHeaders.AUTHORIZATION, TOKEN_PREFIX + " " + token);
-        res.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "*");
 
         try {
             PrintWriter printWriter = res.getWriter();
