@@ -15,7 +15,9 @@ import { JwtModule } from '@auth0/angular-jwt';
 
     JwtModule.forRoot({
       config: {
-        tokenGetter
+        tokenGetter,
+        whitelistedDomains: ['local.store.com', 'localhost'],
+        blacklistedRoutes: ['http://local.store.com/usermngmt/api/v1/login', 'http://localhost:8080/api/v1/login']
       }
     })
   ],
