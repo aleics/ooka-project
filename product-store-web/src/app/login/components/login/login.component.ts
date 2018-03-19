@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
 import { Credentials, TokenData } from '../../models';
-import { StorageService } from '../../services/storage.service';
+import { StorageService } from '../../../general/services/storage.service';
 import { Router } from '@angular/router';
 
 @Component({

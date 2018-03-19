@@ -4,7 +4,7 @@ import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuardService } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
-import { StorageService, tokenGetter } from './services/storage.service';
+import { tokenGetter } from '../general/services/storage.service';
 import { LoginService } from './services/login.service';
 import { JwtModule } from '@auth0/angular-jwt';
 
@@ -27,8 +27,7 @@ import { JwtModule } from '@auth0/angular-jwt';
   providers: [
     AuthGuardService,
     AuthService,
-    LoginService,
-    StorageService
+    LoginService
   ]
 })
 export class LoginModule { }

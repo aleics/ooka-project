@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TokenData } from '../models';
+import { TokenData } from '../../login/models';
 
 
 export function tokenGetter() {
@@ -24,6 +24,10 @@ export class StorageService {
   public getTokenData(): TokenData {
     const data = this.get(this.key);
     return JSON.parse(data);
+  }
+
+  public removeTokenData() {
+    localStorage.removeItem(this.key);
   }
 
   private set(key: string, data: string) {
