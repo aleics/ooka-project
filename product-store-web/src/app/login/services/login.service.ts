@@ -13,6 +13,7 @@ export class LoginService {
 
   private baseUrl: string;
   private authHeader = 'Authorization';
+  private authScheme = 'Bearer ';
 
   constructor(
     endpointService: EndpointService,
@@ -40,7 +41,7 @@ export class LoginService {
   }
 
   private extractToken(authHeader: string) {
-    const token = authHeader.replace('Bearer', '');
+    const token = authHeader.replace(this.authScheme, '');
     return _.trim(token);
   }
 }
