@@ -29,6 +29,10 @@ public class UsersService implements UserDetailsService {
         return this.usersRepository.save(user);
     }
 
+    public User getUserByEmail(String email) {
+        return usersRepository.findByEmail(email);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = usersRepository.findByEmail(email);

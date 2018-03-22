@@ -34,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
                     .anyRequest().authenticated()
                 .and()
                 // We filter the api/login requests
-                .addFilterBefore(new JWTLoginFilter("/api/v1/login", authenticationManager()),
+                .addFilterBefore(new JWTLoginFilter("/api/v1/login", authenticationManager(), usersService),
                         UsernamePasswordAuthenticationFilter.class)
                 // And filter other requests to check the presence of JWT in header
                 .addFilterBefore(new JWTAuthenticationFilter(),
