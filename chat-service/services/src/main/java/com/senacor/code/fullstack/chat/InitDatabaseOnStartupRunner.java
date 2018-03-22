@@ -27,14 +27,14 @@ public class InitDatabaseOnStartupRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         // create some channels
-        repository.save(new Channel("general", "general"));
-        repository.save(new Channel("dev", "dev"));
-        repository.save(new Channel("humor", "humor"));
+        // repository.save(new Channel("general", "general"));
+        // repository.save(new Channel("dev", "dev"));
+        // repository.save(new Channel("humor", "humor"));
 
-        chatMessageRepository.save(new ChatMessage("dev", "sender@test.de", "Goodbye"));
-        chatMessageRepository.save(new ChatMessage("dev", "sender@test.de", "World"));
-        chatMessageRepository.save(new ChatMessage("general", "sender@test.de", "Hello"));
-        chatMessageRepository.save(new ChatMessage("general", "sender@test.de", "World!"));
+        // chatMessageRepository.save(new ChatMessage("dev", "sender@test.de", "Goodbye"));
+        // chatMessageRepository.save(new ChatMessage("dev", "sender@test.de", "World"));
+        // chatMessageRepository.save(new ChatMessage("general", "sender@test.de", "Hello"));
+        // chatMessageRepository.save(new ChatMessage("general", "sender@test.de", "World!"));
 
         // fetch all channels
         LOGGER.info("Channels in Mongo DB:");
