@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ProductComponent } from './components';
 import { GeneralModule } from '../general/general.module';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -11,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     HttpClientModule,
+    RouterModule,
     GeneralModule
   ],
   exports: [

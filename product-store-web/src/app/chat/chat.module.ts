@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { ChatContainerComponent, ChatInputComponent, ChatBodyComponent, ChatMessageComponent } from './components';
 import { MatInputModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ChatService } from './services';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ChatBodyComponent,
     ChatMessageComponent
   ],
-  providers: [],
+  providers: [
+    ChatService
+  ],
   bootstrap: [
     ChatContainerComponent,
     ChatInputComponent,
