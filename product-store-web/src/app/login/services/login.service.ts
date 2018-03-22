@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EndpointService } from '../../general/services/endpoint.service';
-import { Credentials, TokenData, Authority } from '../models';
+import { Credentials } from '../models';
 import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
 
@@ -22,7 +22,7 @@ export class LoginService {
     this.baseUrl = endpointService.getLoginEndpoint();
   }
 
-  public login(credentials: Credentials): Observable<TokenData> {
+  public login(credentials: Credentials): Observable<string> {
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json');
 
@@ -31,12 +31,7 @@ export class LoginService {
       return this.http.post(this.baseUrl, body, { headers, observe: 'response' })
         .map((res) => {
           const authorization = res.headers.get(this.authHeader);
-          const authorities = res.body as Authority[];
-          const accountType = authorities[0].authority;
-          return {
-            token: this.extractToken(authorization),
-            accountType
-          };
+          return this.extractToken(authorization);
         });
   }
 

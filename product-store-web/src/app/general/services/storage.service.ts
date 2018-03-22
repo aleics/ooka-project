@@ -1,33 +1,35 @@
 import { Injectable } from '@angular/core';
-import { TokenData } from '../../login/models';
+import { User } from '../models';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { TokenData } from '../../login/models/token-data.interface';
 
 
 export function tokenGetter() {
-  const storageData = localStorage.getItem('ps-login-info');
-  if (storageData) {
-    const data: TokenData = JSON.parse(storageData);
-    return data.token;
-  }
+  return localStorage.getItem(tokenKey);
 }
+
+export const tokenKey = 'ps-token';
 
 @Injectable()
 export class StorageService {
-  private key = 'ps-login-info';
 
-  constructor() {}
+  constructor(
+    private jwtHelperService: JwtHelperService
+  ) {}
 
-  public saveTokenData(tokenData: TokenData) {
-    const data = JSON.stringify(tokenData);
-    this.set(this.key, data);
+  public saveToken(token: string) {
+    this.set(tokenKey, token);
   }
 
-  public getTokenData(): TokenData {
-    const data = this.get(this.key);
-    return JSON.parse(data);
+  public getUserData(): User {
+    const token = this.get(tokenKey);
+
+    const tokenData = this.jwtHelperService.decodeToken(token) as TokenData;
+    return JSON.parse(tokenData.user) as User;
   }
 
-  public removeTokenData() {
-    localStorage.removeItem(this.key);
+  public removeToken() {
+    localStorage.removeItem(tokenKey);
   }
 
   private set(key: string, data: string) {

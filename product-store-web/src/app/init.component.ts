@@ -15,7 +15,7 @@ export class InitComponent {
   ) {}
 
   logout() {
-    this.storageService.removeTokenData();
+    this.storageService.removeToken();
     this.router.navigate(['/login']);
   }
 }
