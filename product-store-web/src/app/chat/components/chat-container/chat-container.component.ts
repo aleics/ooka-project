@@ -29,7 +29,7 @@ export class ChatContainerComponent implements OnInit {
   ) {}
 
   // if user role is ADMIN: load all chat channels
-  // if user role is USER: make a post to create or read a channel
+  // if user role is USER: make a post to create or read the user channel
   ngOnInit() {
     this.user = this.storageService.getUserData();
 
@@ -38,29 +38,34 @@ export class ChatContainerComponent implements OnInit {
         id: this.user.id,
         name: this.user.email
       };
-      this.fetchMessages(inputChannel)
-        .subscribe(({channel, messages}) => {
-          this.messages = messages;
-          this.isLoading = false;
-          this.currentChannelId = channel.id;
-        });
+      this.getMessagesForUser(inputChannel)
+        .subscribe((messages) => this.readMessages(messages));
     } else {
-      this.getCurrentChannels()
-        .flatMap((channels) => {
-          if (channels && channels.length > 0) {
-            const channelId = channels[0].id;
-            this.channels = channels;
-            this.currentChannelId = channelId;
-            return this.messagesService.readMessages(channelId);
-          } else {
-            return Observable.of([]);
-          }
-        })
-        .subscribe((messages) => {
-          this.messages = messages;
-          this.isLoading = false;
-        });
+      this.getMessagesForAdmin()
+        .subscribe((messages) => this.readMessages(messages));
     }
+  }
+
+  getMessagesForAdmin() {
+    return this.getCurrentChannels()
+    .flatMap((channels) => {
+      if (channels && channels.length > 0) {
+        const channelId = channels[0].id;
+        this.channels = channels;
+        this.currentChannelId = channelId;
+        return this.messagesService.readMessages(channelId);
+      } else {
+        return Observable.of([]);
+      }
+    });
+  }
+
+  getMessagesForUser(inputChannel: ChatChannel) {
+    return this.fetchMessages(inputChannel)
+      .flatMap(({channel, messages}) => {
+        this.currentChannelId = channel.id;
+        return Observable.of(messages);
+      });
   }
 
   sendMessage(text: string) {
@@ -72,9 +77,14 @@ export class ChatContainerComponent implements OnInit {
     };
 
     this.messagesService.sendMessage(message, channelId)
-      .subscribe((chatMessage) => {
-        this.messages.push(chatMessage);
-      });
+    .subscribe((chatMessage) => {
+      this.messages.push(chatMessage);
+    });
+  }
+
+  private readMessages(messages: ChatMessage[]) {
+    this.messages = messages;
+    this.isLoading = false;
   }
 
   private getCurrentChannels(): Observable<ChatChannel[]> {
