@@ -32,12 +32,11 @@ public class ChannelService {
         return channelRepository.existsById(channelId);
     }
 
-    public Channel createChannelForUser(String userId) {
-        if (!existsChannel(userId)) {
-            Channel channel = new Channel(userId, "userChannel");
+    public Channel createChannel(Channel channel) {
+        if (!existsChannel(channel.getId())) {
             return channelRepository.insert(channel);
         }
-        return getChannel(userId);
+        return getChannel(channel.getId());
     }
 
     public Channel getChannel(String channelId) {

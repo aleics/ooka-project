@@ -32,8 +32,8 @@ public class ChannelController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Channel createChannel(
-            @Valid @RequestBody String userId
-    ) { return channelService.createChannelForUser(userId); }
+    public Channel createChannel(@Valid @RequestBody Channel channel) {
+        return channelService.createChannel(channel);
+    }
 
 }
