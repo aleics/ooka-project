@@ -1,22 +1,36 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ChatContainerComponent } from './components';
+import { ChatContainerComponent, ChatInputComponent, ChatBodyComponent, ChatMessageComponent } from './components';
+import { MatInputModule } from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    ChatContainerComponent
+    ChatContainerComponent,
+    ChatInputComponent,
+    ChatBodyComponent,
+    ChatMessageComponent
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
     BrowserModule,
     RouterModule
   ],
   exports: [
-    ChatContainerComponent
+    ChatContainerComponent,
+    ChatInputComponent,
+    ChatBodyComponent,
+    ChatMessageComponent
   ],
   providers: [],
   bootstrap: [
-    ChatContainerComponent
+    ChatContainerComponent,
+    ChatInputComponent,
+    ChatBodyComponent,
+    ChatMessageComponent
   ]
 })
 export class ChatModule { }

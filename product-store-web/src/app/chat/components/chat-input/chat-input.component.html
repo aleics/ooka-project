@@ -1,0 +1,18 @@
+<form>
+  <mat-form-field class="formField" color="accent">
+    <input
+      matInput
+      [(ngModel)]="value"
+      [disabled]="disabled"
+      name="value"
+      placeholder="Write to the chat..."
+      autocomplete="off"
+      autofocus>
+  </mat-form-field>
+  <button
+    class="btn"
+    (click)="sendMessage()"
+    (keyup.enter)="sendMessage()">
+    <i class="fa fa-comment" aria-hidden="true"></i>
+  </button>
+</form>
