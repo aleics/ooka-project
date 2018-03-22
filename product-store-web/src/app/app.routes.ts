@@ -6,6 +6,7 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './login/components/login/login.component';
 import { AuthGuardService } from './login/services/auth-guard.service';
 import { ChatContainerComponent } from './chat/components/chat-container/chat-container.component';
+import { ChatGuardService } from './chat/services';
 
 export const appRoutes: Routes = [
   {
@@ -26,7 +27,8 @@ export const appRoutes: Routes = [
       },
       {
         path: 'chat',
-        component: ChatContainerComponent
+        component: ChatContainerComponent,
+        canActivate: [ChatGuardService]
       }
     ],
     canActivate: [AuthGuardService]

@@ -32,6 +32,10 @@ export class EndpointService {
   }
 
   public getChannelsEndpoint(): string {
-    return /*`${this.getChatEndpoint()}/messages`*/ 'http:localhost/api/v1/channels';
+    return /*`${this.getChatEndpoint()}/channels`*/ 'http://localhost:8080/api/v1/channels';
+  }
+
+  public getMessagesEndpoint(channelId: string): string {
+    return /*`${this.getChatEndpoint()}/channels/${channelId}/messages`*/ `http://localhost:8080/api/v1/channels/${channelId}/messages`;
   }
 }

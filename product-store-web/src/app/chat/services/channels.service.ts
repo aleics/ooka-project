@@ -1,11 +1,13 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { ChatEvent, ChatEventType, ChatMessage } from '../models';
-import * as _ from 'lodash';
+import { ChatEvent, ChatEventType, ChatMessage, ChatChannel } from '../models';
 import { EndpointService } from '../../general/services';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+import { Observable } from 'rxjs/Observable';
+import * as _ from 'lodash';
+
 @Injectable()
-export class ChannelService {
+export class ChannelsService {
   private baseUrl: string;
   constructor(
     endpointService: EndpointService,
@@ -14,12 +16,10 @@ export class ChannelService {
     this.baseUrl = endpointService.getChannelsEndpoint();
   }
 
-  createChannel(userId: string) {
+  createChannel(userId: string): Observable<ChatChannel> {
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json');
 
-    const body = JSON.stringify(userId);
-
-    return this.http.post(this.baseUrl, body, { headers });
+    return this.http.post<ChatChannel>(this.baseUrl, userId, { headers });
   }
 }

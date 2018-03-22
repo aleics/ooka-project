@@ -17,6 +17,10 @@ export class StorageService {
     private jwtHelperService: JwtHelperService
   ) {}
 
+  public getToken(): string {
+    return this.get(tokenKey);
+  }
+
   public saveToken(token: string) {
     this.set(tokenKey, token);
   }
