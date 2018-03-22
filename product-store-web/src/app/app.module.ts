@@ -16,6 +16,7 @@ import {
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
 import { InitComponent } from './init.component';
+import { ChatModule } from './chat/chat.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { InitComponent } from './init.component';
     ProductModule,
     GeneralModule,
     LoginModule,
+    ChatModule,
     ReactiveFormsModule,
     FormsModule,
 

@@ -5,6 +5,7 @@ import { PageNotFoundComponent } from './general/components';
 import { Routes } from '@angular/router';
 import { LoginComponent } from './login/components/login/login.component';
 import { AuthGuardService } from './login/services/auth-guard.service';
+import { ChatContainerComponent } from './chat/components/chat-container/chat-container.component';
 
 export const appRoutes: Routes = [
   {
@@ -22,6 +23,10 @@ export const appRoutes: Routes = [
       {
         path: 'product/:productId',
         component: ProductComponent
+      },
+      {
+        path: 'chat',
+        component: ChatContainerComponent
       }
     ],
     canActivate: [AuthGuardService]
