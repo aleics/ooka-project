@@ -7,9 +7,9 @@ A product store application for academic purposes.
 ## Steps
  - ~~Database connection in product store (ALC).~~
  - Chat module in product store web (NIG).
- - Chat backend as docker container (NIG).
+ - ~~Chat backend as docker container (NIG).~~
  - ~~User management backend (ALC).~~
- - Log in page module (NIG).
+ - ~~Log in page module (NIG).~~
  - ~~Product view (ALC).~~
  - ~~Add CI : travis (ALC)~~.
  - Authentication in all microservices connecting to usermngmt (ALC).
