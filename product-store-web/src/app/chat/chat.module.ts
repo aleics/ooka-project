@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ChatContainerComponent, ChatInputComponent, ChatBodyComponent, ChatMessageComponent } from './components';
-import { MatInputModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material';
+import { GeneralModule } from '../general/general.module';
 import { MessagesService, ChannelsService, ChatGuardService } from './services';
+import { ChatContainerComponent, ChatInputComponent, ChatBodyComponent, ChatMessageComponent } from './components';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MessagesService, ChannelsService, ChatGuardService } from './services';
     ReactiveFormsModule,
     MatInputModule,
     BrowserModule,
-    RouterModule
+    RouterModule,
+    GeneralModule
   ],
   exports: [
     ChatContainerComponent,

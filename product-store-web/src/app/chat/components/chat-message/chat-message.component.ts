@@ -8,7 +8,6 @@ import { ChatMessage } from '../../models/chat-message.interface';
 })
 export class ChatMessageComponent {
   @Input() public message: ChatMessage;
-  @Input() public uuid: string;
 
   date = new Date();
 }

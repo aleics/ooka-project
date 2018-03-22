@@ -20,4 +20,15 @@ export class MessagesService {
 
     return this.http.get<ChatMessage[]>(url, { headers });
   }
+
+  sendMessage(message: ChatMessage, channelId: string): Observable<ChatMessage> {
+    const url = this.endpointService.getMessagesEndpoint(channelId);
+
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json');
+
+    const body = JSON.stringify(message);
+
+    return this.http.post<ChatMessage>(url, body, { headers });
+  }
 }

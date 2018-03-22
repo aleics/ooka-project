@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./init.component.styl']
 })
 export class InitComponent {
-
   constructor(
     private router: Router,
     private storageService: StorageService

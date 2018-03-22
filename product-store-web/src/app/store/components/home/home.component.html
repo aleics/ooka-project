@@ -10,7 +10,7 @@
     />
   </div>
   <div class="content col-md-12">
-      <div *ngIf="isLoading; then spinnerTemplate else listTemplate"></div>
+      <div *ngIf="isLoading && products.length === 0; then spinnerTemplate else listTemplate"></div>
 
       <ng-template #spinnerTemplate>
         <div class="text-center">

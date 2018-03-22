@@ -1,15 +1,15 @@
-<!-- <div class="msgContainer">
-  <i class="fa fa-user-circle userIcon" aria-hidden="true"></i>
-  <span *ngIf="isOwnMessage; else userTemplate" class="user">
-    me
-  </span>
+<div class="msgContainer">
+  <div class="header">
+    <i class="fa fa-user-circle userIcon" aria-hidden="true"></i>
+    <span>{{ message.sender }}</span>
+  </div>
   <ng-template #userTemplate>
     <span class="user">
-      {{ message.data.user.name }}
+      {{ message.sender }}
     </span>
   </ng-template>
   <div class="message">
-    {{ message.data.text }}
+    {{ message.message }}
   </div>
-  <div class="timeContainer">{{ date | amDateFormat: 'YYYY-MM-DD HH:mm'}}</div>
-</div> -->
+  <div class="timeContainer">{{ date.toDateString() }}</div>
+</div>

@@ -9,8 +9,6 @@ import * as _ from 'lodash';
 })
 export class ChatInputComponent {
   @Input() public disabled = false;
-  @Input() public user: string;
-  @Input() public uuid: string;
   @Output() public send: EventEmitter<string> = new EventEmitter();
 
   value: string;

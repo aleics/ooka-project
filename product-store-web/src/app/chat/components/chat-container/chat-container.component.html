@@ -1,4 +1,20 @@
-<div class="wrapper">
-  <ps-chat-body></ps-chat-body>
-  <ps-chat-input></ps-chat-input>
+<div  #chatContainer
+      class="wrapper">
+  <div class="chatBodyContainer">
+    <div *ngIf="isLoading; else chatTemplate">
+        <ps-spinner></ps-spinner>
+    </div>
+    <ng-template #chatTemplate>
+      <ps-chat-body
+        [messages]="messages">
+      </ps-chat-body>
+    </ng-template>
+  </div>
+
+  <div class="chatInputContainer">
+    <ps-chat-input
+      [disabled]="isLoading"
+      (send)="sendMessage($event)">
+    </ps-chat-input>
+  </div>
 </div>

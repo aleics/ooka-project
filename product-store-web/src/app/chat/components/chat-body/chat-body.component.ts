@@ -8,5 +8,4 @@ import { ChatMessage } from '../../models/chat-message.interface';
 })
 export class ChatBodyComponent {
   @Input() public messages: ChatMessage[];
-  @Input() public uuid: string;
 }
