@@ -3,6 +3,8 @@ import { HomeComponent } from './store/components';
 import { ProductComponent } from './product/components';
 import { PageNotFoundComponent } from './general/components';
 import { Routes } from '@angular/router';
+import { LoginComponent } from './login/components/login/login.component';
+import { AuthGuardService } from './login/services/auth-guard.service';
 
 export const appRoutes: Routes = [
   {
@@ -21,7 +23,12 @@ export const appRoutes: Routes = [
         path: 'product/:productId',
         component: ProductComponent
       }
-    ]
+    ],
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   },
   { path: '**', component: PageNotFoundComponent }
 ];

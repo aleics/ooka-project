@@ -19,7 +19,6 @@ import java.io.PrintWriter;
 import java.util.Collections;
 
 public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
-
     static final String TOKEN_PREFIX = "Bearer";
 
     JwtService jwtService = new JwtService();
@@ -32,6 +31,21 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
     @Override
     public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res)
             throws AuthenticationException, IOException {
+        String origin = req.getHeader(HttpHeaders.ORIGIN);
+        if (origin != null && !origin.isEmpty()) {
+            res.addHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, origin);
+            res.addHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS, "GET, POST, PUT, DELETE");
+            res.addHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS, "true");
+            res.addHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS, "*");
+            res.addHeader(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, HttpHeaders.AUTHORIZATION);
+        }
+
+        if (req.getMethod().equals("OPTIONS")) {
+            PrintWriter printWriter = res.getWriter();
+            printWriter.write("OK");
+            printWriter.flush();
+            return null;
+        }
         CredentialsMessage creds = new ObjectMapper()
                 .readValue(req.getInputStream(), CredentialsMessage.class);
         return getAuthenticationManager().authenticate(
@@ -55,7 +69,10 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
 
         try {
             PrintWriter printWriter = res.getWriter();
-            printWriter.write(auth.getAuthorities().toString());
+            ObjectMapper mapper = new ObjectMapper();
+            String jsonString = mapper.writeValueAsString(auth.getAuthorities());
+
+            printWriter.write(jsonString);
             printWriter.flush();
         } catch (Exception e) {
             System.out.println("ERROR: Couldn't set the body in the login request. Exception: " + e.getMessage());

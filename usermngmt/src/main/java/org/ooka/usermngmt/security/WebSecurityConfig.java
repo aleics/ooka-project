@@ -14,19 +14,24 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+@EnableWebMvc
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
     @Autowired
-    UsersService usersService ;
+    UsersService usersService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/v1/login").permitAll()
-                .anyRequest().authenticated()
+        http.csrf().disable()
+                .authorizeRequests()
+                    .antMatchers("/").permitAll()
+                    .antMatchers(HttpMethod.POST, "/api/v1/login").permitAll()
+                    .anyRequest().authenticated()
                 .and()
                 // We filter the api/login requests
                 .addFilterBefore(new JWTLoginFilter("/api/v1/login", authenticationManager()),
@@ -53,5 +58,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public static NoOpPasswordEncoder passwordEncoder() {
         return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
+    }
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/api/**")
+                .allowedOrigins("*");
     }
 }
