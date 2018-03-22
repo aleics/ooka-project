@@ -69,22 +69,9 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
             HttpServletResponse res,
             FilterChain chain,
             Authentication auth) {
-        String token = jwtService.createUserJwt(auth.getName());
+        User user = this.usersService.getUserByEmail(auth.getName());
+        String token = jwtService.createUserJwt(user);
 
         res.addHeader(HttpHeaders.AUTHORIZATION, TOKEN_PREFIX + " " + token);
-
-        try {
-            PrintWriter printWriter = res.getWriter();
-            ObjectMapper mapper = new ObjectMapper();
-
-            User user = this.usersService.getUserByEmail(auth.getName());
-
-            String jsonString = mapper.writeValueAsString(user);
-
-            printWriter.write(jsonString);
-            printWriter.flush();
-        } catch (Exception e) {
-            System.out.println("ERROR: Couldn't set the body in the login request. Exception: " + e.getMessage());
-        }
     }
 }
