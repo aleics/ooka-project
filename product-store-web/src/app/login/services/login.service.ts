@@ -3,10 +3,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EndpointService } from '../../general/services/endpoint.service';
 import { Credentials } from '../models';
 import { Observable } from 'rxjs/Observable';
+import { HttpResponse } from 'selenium-webdriver/http';
 import * as _ from 'lodash';
 
 import 'rxjs/add/operator/map';
-import { HttpResponse } from 'selenium-webdriver/http';
 
 @Injectable()
 export class LoginService {

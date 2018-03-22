@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { AccountType } from '../../../general/models';
 
 @Component({
   selector: 'ps-sidebar',
@@ -7,6 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./sidebar.component.styl']
 })
 export class SidebarComponent {
+  @Input() chatAvailable: boolean;
+
   constructor(
     private router: Router
   ) {}

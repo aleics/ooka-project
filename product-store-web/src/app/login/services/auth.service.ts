@@ -25,6 +25,11 @@ export class AuthService {
     return {
       accountType: user.accountType,
       userRole: user.userRole
-    }
+    };
+  }
+
+  public chatAvailable(): boolean {
+    const user = this.storageService.getUserData();
+    return user ? user.accountType === 'PREMIUM' : false;
   }
 }

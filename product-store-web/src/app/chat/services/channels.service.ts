@@ -16,10 +16,16 @@ export class ChannelsService {
     this.baseUrl = endpointService.getChannelsEndpoint();
   }
 
-  createChannel(userId: string): Observable<ChatChannel> {
+  loadChannels(): Observable<ChatChannel[]> {
+    return this.http.get<ChatChannel[]>(this.baseUrl);
+  }
+
+  createChannel(channel: ChatChannel): Observable<ChatChannel> {
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json');
 
-    return this.http.post<ChatChannel>(this.baseUrl, userId, { headers });
+    const body = JSON.stringify(channel);
+
+    return this.http.post<ChatChannel>(this.baseUrl, body, { headers });
   }
 }

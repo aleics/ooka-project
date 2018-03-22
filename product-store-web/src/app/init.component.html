@@ -4,7 +4,7 @@
 </ps-topbar>
 <mat-sidenav-container class="example-container">
   <mat-sidenav #sidenav mode="side">
-    <ps-sidebar></ps-sidebar>
+    <ps-sidebar [chatAvailable]="chatAvailable"></ps-sidebar>
   </mat-sidenav>
 
   <mat-sidenav-content (click)="sidenav.close()">

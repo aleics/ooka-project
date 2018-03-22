@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../../general/services';
+import { AuthService } from '../../../login/services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../../general/models';
 
@@ -10,12 +11,14 @@ import { Product } from '../../../general/models';
 })
 export class ProductComponent implements OnInit {
   public isLoading = true;
+  public chatAvailable = false;
 
   private product: Product;
 
   constructor(
     private productsService: ProductsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -26,5 +29,7 @@ export class ProductComponent implements OnInit {
         this.product = product;
         this.isLoading = false;
       });
+
+    this.chatAvailable = this.authService.chatAvailable();
   }
 }
