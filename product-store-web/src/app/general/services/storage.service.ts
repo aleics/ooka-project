@@ -3,12 +3,11 @@ import { User } from '../models';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { TokenData } from '../../login/models/token-data.interface';
 
+export const tokenKey = 'ps-token';
 
 export function tokenGetter() {
   return localStorage.getItem(tokenKey);
 }
-
-export const tokenKey = 'ps-token';
 
 @Injectable()
 export class StorageService {
