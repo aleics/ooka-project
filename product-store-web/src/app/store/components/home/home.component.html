@@ -24,7 +24,7 @@
         </ps-products-list>
       </ng-template>
 
-      <div *ngIf="products && products.length === 0" class="col-md-12">
+      <div *ngIf="products && products.length === 0 && !isLoading" class="col-md-12">
         <span>No entries.</span>
       </div>
   </div>

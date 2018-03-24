@@ -20,6 +20,14 @@ export class ChatContainerComponent implements OnInit {
   channels: ChatChannel[] = [];
   currentChannelId: string;
 
+  get isAdmin(): boolean {
+    return this.user.userRole === 'ADMIN';
+  }
+
+  get showChannelSelector(): boolean {
+    return this.isAdmin && this.channels.length > 0;
+  }
+
   @ViewChild('chatContainer') private chatContainer: ElementRef;
 
   constructor(
@@ -33,15 +41,15 @@ export class ChatContainerComponent implements OnInit {
   ngOnInit() {
     this.user = this.storageService.getUserData();
 
-    if (this.user.userRole === 'USER') {
+    if (this.isAdmin) {
+      this.getMessagesForAdmin()
+      .subscribe((messages) => this.readMessages(messages));
+    } else {
       const inputChannel: ChatChannel = {
         id: this.user.id,
         name: this.user.email
       };
       this.getMessagesForUser(inputChannel)
-        .subscribe((messages) => this.readMessages(messages));
-    } else {
-      this.getMessagesForAdmin()
         .subscribe((messages) => this.readMessages(messages));
     }
   }
@@ -69,14 +77,13 @@ export class ChatContainerComponent implements OnInit {
   }
 
   sendMessage(text: string) {
-    const channelId = this.user.id;
     const message: ChatMessage = {
       message: text,
       sender: this.user.email,
-      channelId: this.user.email
+      channelId: this.currentChannelId
     };
 
-    this.messagesService.sendMessage(message, channelId)
+    this.messagesService.sendMessage(message, this.currentChannelId)
     .subscribe((chatMessage) => {
       this.messages.push(chatMessage);
     });

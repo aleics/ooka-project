@@ -1,6 +1,17 @@
 <div  #chatContainer
       class="wrapper">
-  <div class="chatBodyContainer">
+
+  <div *ngIf="showChannelSelector" class="channelSelector">
+    <mat-form-field>
+      <mat-select placeholder="Select channel" [value]="currentChannelId">
+        <mat-option *ngFor="let channel of channels" [value]="channel.id">
+          {{ channel.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="chatBodyContainer" [class.adminLayout]="showChannelSelector">
     <div *ngIf="isLoading; else chatTemplate">
         <ps-spinner></ps-spinner>
     </div>
