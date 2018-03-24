@@ -29,6 +29,10 @@ export class ChatContainerComponent implements OnInit {
     return this.isAdmin && this.channels.length > 0;
   }
 
+  get isInputDisabled(): boolean {
+    return !this.currentChannelId || this.isLoading;
+  }
+
   constructor(
     private storageService: StorageService,
     private channelsService: ChannelsService,

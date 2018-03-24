@@ -23,7 +23,7 @@
 
   <div class="chatInputContainer">
     <ps-chat-input
-      [disabled]="isLoading"
+      [disabled]="isInputDisabled"
       (send)="sendMessage($event)">
     </ps-chat-input>
   </div>
