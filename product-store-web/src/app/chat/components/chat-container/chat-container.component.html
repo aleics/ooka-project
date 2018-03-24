@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper" #container>
 
   <div *ngIf="showChannelSelector" class="channelSelector">
     <mat-form-field>
@@ -15,9 +15,9 @@
         <ps-spinner></ps-spinner>
     </div>
     <ng-template #chatTemplate>
-      <ps-chat-body
-        [messages]="messages">
-      </ps-chat-body>
+        <ps-chat-body
+          [messages]="messages">
+        </ps-chat-body>
     </ng-template>
   </div>
 

@@ -14,6 +14,8 @@ import 'rxjs/add/observable/of';
   styleUrls: ['./chat-container.component.styl']
 })
 export class ChatContainerComponent implements OnInit {
+  @ViewChild('container') container: ElementRef;
+
   isLoading = true;
   messages: ChatMessage[] = [];
   user: User;
@@ -95,6 +97,7 @@ export class ChatContainerComponent implements OnInit {
     this.messagesService.sendMessage(message, this.currentChannelId)
       .subscribe((chatMessage) => {
         this.messages.push(chatMessage);
+        this.scrollToBottom();
       });
   }
 
@@ -111,6 +114,7 @@ export class ChatContainerComponent implements OnInit {
   private loadMessages(messages: ChatMessage[]) {
     this.messages = messages;
     this.isLoading = false;
+    this.scrollToBottom();
   }
 
   private getCurrentChannels(): Observable<ChatChannel[]> {
@@ -132,5 +136,11 @@ export class ChatContainerComponent implements OnInit {
       - Name: ${product.name}.
       - Price: ${product.price}.
       - Availability: ${product.available}.`;
+  }
+
+  private scrollToBottom() {
+    setTimeout(() => {
+      this.container.nativeElement.parentElement.parentElement.scrollTop = this.container.nativeElement.scrollHeight;
+    }, 0);
   }
 }
