@@ -1,9 +1,8 @@
-<div  #chatContainer
-      class="wrapper">
+<div class="wrapper">
 
   <div *ngIf="showChannelSelector" class="channelSelector">
     <mat-form-field>
-      <mat-select placeholder="Select channel" [value]="currentChannelId">
+      <mat-select placeholder="Select channel" [value]="currentChannelId" (selectionChange)="changeChannel($event)">
         <mat-option *ngFor="let channel of channels" [value]="channel.id">
           {{ channel.name }}
         </mat-option>

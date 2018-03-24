@@ -6,6 +6,7 @@ import { UserRole, User } from '../../../general/models';
 import { ChatChannel, ChatMessage } from '../../models';
 
 import 'rxjs/add/observable/of';
+import { MatSelectChange } from '@angular/material';
 
 
 @Component({
@@ -28,8 +29,6 @@ export class ChatContainerComponent implements OnInit {
     return this.isAdmin && this.channels.length > 0;
   }
 
-  @ViewChild('chatContainer') private chatContainer: ElementRef;
-
   constructor(
     private storageService: StorageService,
     private channelsService: ChannelsService,
@@ -43,14 +42,14 @@ export class ChatContainerComponent implements OnInit {
 
     if (this.isAdmin) {
       this.getMessagesForAdmin()
-      .subscribe((messages) => this.readMessages(messages));
+      .subscribe((messages) => this.loadMessages(messages));
     } else {
       const inputChannel: ChatChannel = {
         id: this.user.id,
         name: this.user.email
       };
       this.getMessagesForUser(inputChannel)
-        .subscribe((messages) => this.readMessages(messages));
+        .subscribe((messages) => this.loadMessages(messages));
     }
   }
 
@@ -89,7 +88,17 @@ export class ChatContainerComponent implements OnInit {
     });
   }
 
-  private readMessages(messages: ChatMessage[]) {
+  changeChannel(event: MatSelectChange) {
+    const channelId = event.value;
+    this.isLoading = true;
+    this.messagesService.readMessages(channelId)
+      .subscribe((messages) => {
+        this.currentChannelId = channelId;
+        this.loadMessages(messages);
+      });
+  }
+
+  private loadMessages(messages: ChatMessage[]) {
     this.messages = messages;
     this.isLoading = false;
   }
