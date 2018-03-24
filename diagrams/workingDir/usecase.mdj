@@ -10030,6 +10030,30 @@
 				}
 			],
 			"visibility": "public"
+		},
+		{
+			"_type": "UMLCollaboration",
+			"_id": "AAAAAAFiV3RhvjZP/6w=",
+			"_parent": {
+				"$ref": "AAAAAAFF+h6SjaM2Hec="
+			},
+			"name": "bausteinsicht_chatService",
+			"ownedElements": [
+				{
+					"_type": "UMLCompositeStructureDiagram",
+					"_id": "AAAAAAFiV3RhvjZQ1uM=",
+					"_parent": {
+						"$ref": "AAAAAAFiV3RhvjZP/6w="
+					},
+					"name": "Composite Structures1",
+					"visible": true,
+					"defaultDiagram": false
+				}
+			],
+			"visibility": "public",
+			"isAbstract": false,
+			"isFinalSpecialization": false,
+			"isLeaf": false
 		}
 	],
 	"author": "NIG"
