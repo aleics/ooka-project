@@ -32,7 +32,7 @@
             <span>${{ product.price }}</span>
 
             <div *ngIf="chatAvailable" class="btnContainer">
-              <a class="btn btn-primary pull-right" [routerLink]="['/chat']">
+              <a class="btn btn-primary pull-right" (click)="goToChat()">
                 <span>Support </span>
                 <i class="fa fa-comments"></i>
               </a>

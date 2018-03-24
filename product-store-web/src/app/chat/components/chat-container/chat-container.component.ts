@@ -1,13 +1,12 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { MatSelectChange } from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { ChannelsService, MessagesService } from '../../services';
 import { StorageService } from '../../../general/services';
-import { UserRole, User } from '../../../general/models';
+import { UserRole, User, Product } from '../../../general/models';
 import { ChatChannel, ChatMessage } from '../../models';
-
 import 'rxjs/add/observable/of';
-import { MatSelectChange } from '@angular/material';
-
 
 @Component({
   selector: 'ps-chat-container',
@@ -36,7 +35,8 @@ export class ChatContainerComponent implements OnInit {
   constructor(
     private storageService: StorageService,
     private channelsService: ChannelsService,
-    private messagesService: MessagesService
+    private messagesService: MessagesService,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   // if user role is ADMIN: load all chat channels
@@ -52,8 +52,14 @@ export class ChatContainerComponent implements OnInit {
         id: this.user.id,
         name: this.user.email
       };
+      const productData = this.activatedRoute.snapshot.data['product'];
       this.getMessagesForUser(inputChannel)
-        .subscribe((messages) => this.loadMessages(messages));
+        .subscribe((messages) => {
+          this.loadMessages(messages);
+          if (productData) {
+            this.sendMessage(this.createProductInfoMessage(productData));
+          }
+        });
     }
   }
 
@@ -87,9 +93,9 @@ export class ChatContainerComponent implements OnInit {
     };
 
     this.messagesService.sendMessage(message, this.currentChannelId)
-    .subscribe((chatMessage) => {
-      this.messages.push(chatMessage);
-    });
+      .subscribe((chatMessage) => {
+        this.messages.push(chatMessage);
+      });
   }
 
   changeChannel(event: MatSelectChange) {
@@ -119,5 +125,12 @@ export class ChatContainerComponent implements OnInit {
             return { channel, messages };
           })
       );
+  }
+
+  private createProductInfoMessage(product: Product) {
+    return `Information of product:
+      - Name: ${product.name}.
+      - Price: ${product.price}.
+      - Availability: ${product.available}.`;
   }
 }

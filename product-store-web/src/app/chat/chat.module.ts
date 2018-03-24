@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule, MatSelectModule } from '@angular/material';
 import { GeneralModule } from '../general/general.module';
-import { MessagesService, ChannelsService, ChatGuardService } from './services';
+import { MessagesService, ChannelsService, ChatGuardService, ChatProductResolver } from './services';
 import { ChatContainerComponent, ChatInputComponent, ChatBodyComponent, ChatMessageComponent } from './components';
 
 @NgModule({
@@ -32,7 +32,8 @@ import { ChatContainerComponent, ChatInputComponent, ChatBodyComponent, ChatMess
   providers: [
     MessagesService,
     ChannelsService,
-    ChatGuardService
+    ChatGuardService,
+    ChatProductResolver
   ],
   bootstrap: [
     ChatContainerComponent,

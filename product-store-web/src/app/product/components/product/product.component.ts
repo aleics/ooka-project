@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../../general/services';
 import { AuthService } from '../../../login/services/auth.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../../../general/models';
 
 @Component({
@@ -18,7 +18,8 @@ export class ProductComponent implements OnInit {
   constructor(
     private productsService: ProductsService,
     private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -31,5 +32,9 @@ export class ProductComponent implements OnInit {
       });
 
     this.chatAvailable = this.authService.chatAvailable();
+  }
+
+  goToChat() {
+    this.router.navigate(['chat', { product: this.product.id }]);
   }
 }
