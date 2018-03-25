@@ -1,5 +1,6 @@
 package com.senacor.code.fullstack.chat;
 
+import com.senacor.code.fullstack.chat.security.TokenFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -15,5 +16,12 @@ public class ChatApplication {
 	@Bean
 	public FilterRegistrationBean commonsRequestLoggingFilterRegistration(RequestLoggingFilter filter) {
 		return new FilterRegistrationBean(filter);
+	}
+
+	@Bean
+	public FilterRegistrationBean tokenApiFilter() {
+		FilterRegistrationBean registration = new FilterRegistrationBean();
+		registration.setFilter(new TokenFilter());
+		return registration;
 	}
 }
