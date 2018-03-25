@@ -1,6 +1,7 @@
 package com.senacor.code.fullstack.chat.security;
 
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.GenericFilterBean;
@@ -22,15 +23,23 @@ public class TokenFilter extends GenericFilterBean {
             FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         String token = httpRequest.getHeader(HttpHeaders.AUTHORIZATION);
-        if (token != null && !token.isEmpty()) {
-            AuthService authService = new AuthService();
-            HttpStatus status = authService.authenticate(token);
-            if (!status.equals(HttpStatus.OK)) {
-                abortRequest(response, status);
+
+        String method = httpRequest.getMethod();
+        if (!method.equals(HttpMethod.OPTIONS.toString())) {
+            if (token != null && !token.isEmpty()) {
+                AuthService authService = new AuthService();
+                HttpStatus status = authService.authenticate(token);
+                if (!status.equals(HttpStatus.OK)) {
+                    abortRequest(response, status);
+                }
+            } else {
+                abortRequest(response, HttpStatus.FORBIDDEN);
             }
         } else {
-            abortRequest(response, HttpStatus.FORBIDDEN);
+            HttpServletResponse httpResponse = (HttpServletResponse)response;
+            httpResponse.setStatus(HttpStatus.OK.value());
         }
+        chain.doFilter(request, response);
     }
 
     private void abortRequest(ServletResponse response, HttpStatus status) {

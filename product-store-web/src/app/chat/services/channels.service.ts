@@ -17,7 +17,10 @@ export class ChannelsService {
   }
 
   loadChannels(): Observable<ChatChannel[]> {
-    return this.http.get<ChatChannel[]>(this.baseUrl);
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json');
+
+    return this.http.get<ChatChannel[]>(this.baseUrl, { headers });
   }
 
   createChannel(channel: ChatChannel): Observable<ChatChannel> {
