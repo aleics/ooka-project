@@ -10,7 +10,7 @@
     />
   </div>
   <div class="content col-md-12">
-      <div *ngIf="isLoading; then spinnerTemplate else listTemplate"></div>
+      <div *ngIf="isLoading && products.length === 0; then spinnerTemplate else listTemplate"></div>
 
       <ng-template #spinnerTemplate>
         <div class="text-center">
@@ -24,7 +24,7 @@
         </ps-products-list>
       </ng-template>
 
-      <div *ngIf="products && products.length === 0" class="col-md-12">
+      <div *ngIf="products && products.length === 0 && !isLoading" class="col-md-12">
         <span>No entries.</span>
       </div>
   </div>

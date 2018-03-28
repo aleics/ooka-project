@@ -1,0 +1,9 @@
+<div class="wrapper">
+  <div class="noMessagesWarn" *ngIf="messages.length === 0">
+    No messages.
+  </div>
+  <ps-chat-message
+    *ngFor="let message of messages"
+      [message]="message">
+  </ps-chat-message>
+</div>

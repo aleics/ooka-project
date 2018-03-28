@@ -29,13 +29,13 @@ public class JwtServiceTest {
 
     @Test
     public void generateJwt() {
-        String token = jwtService.createUserJwt(user.getEmail());
+        String token = jwtService.createUserJwt(user);
         Assert.assertNotNull(token);
     }
 
     @Test
     public void validateJwt() {
-        String token = jwtService.createUserJwt(user.getEmail());
+        String token = jwtService.createUserJwt(user);
         Assert.assertNotNull(token);
 
         Assert.assertTrue(jwtService.validate(token));

@@ -63,7 +63,7 @@ public class ChatMessageRepositoryIT {
 
         assertEquals(
                 asList(chatMessageOne, chatMessageTwo),
-                chatMessageRepository.findByChannelIdOrderByCreationTimestampDesc("dev"));
+                chatMessageRepository.findByChannelIdOrderByCreationTimestampAsc("dev"));
     }
 
 }

@@ -23,8 +23,8 @@ var usersData = [...]string{
 			"email": "bruce.wayne@example.com",
 			"userName": "Bruce Wayne",
 			"password": "1234",
-			"accountType": "NORMAL",
-			"userRole": "ADMIN"
+			"accountType": "PREMIUM",
+			"userRole": "USER"
 		}
 	`,
 	`

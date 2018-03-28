@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.Arrays.asList;
 import static java.util.Collections.unmodifiableList;
@@ -29,5 +30,20 @@ public class ChannelService {
 
     public boolean existsChannel(String channelId) {
         return channelRepository.existsById(channelId);
+    }
+
+    public Channel createChannel(Channel channel) {
+        if (!existsChannel(channel.getId())) {
+            return channelRepository.insert(channel);
+        }
+        return getChannel(channel.getId());
+    }
+
+    public Channel getChannel(String channelId) {
+        Optional<Channel> channel = channelRepository.findById(channelId);
+        if (!channel.isPresent()) {
+            return null;
+        }
+        return channel.get();
     }
 }

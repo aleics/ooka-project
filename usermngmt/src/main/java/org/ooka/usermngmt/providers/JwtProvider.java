@@ -1,7 +1,11 @@
 package org.ooka.usermngmt.providers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.impl.DefaultClaims;
+import org.ooka.usermngmt.domain.User;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 
@@ -17,13 +21,20 @@ public class JwtProvider {
         this.secretKey = envSecretKey != null ? envSecretKey : "ThisIsATemporalSecretKey";
     }
 
-    public String createUserJwt(String userName) {
+    public String createUserJwt(User user) throws Exception {
         Date now = new Date();
         Date expirationTime = new Date(now.getTime() + TimeUnit.MINUTES.toMillis(30));
 
+        ObjectMapper mapper = new ObjectMapper();
+        String userJson = mapper.writeValueAsString(user);
+
+        Claims claims = Jwts.claims()
+                .setSubject(user.getEmail())
+                .setExpiration(expirationTime);
+        claims.put("user", userJson);
+
         return Jwts.builder()
-                .setSubject(userName)
-                .setExpiration(expirationTime)
+                .setClaims(claims)
                 .signWith(SignatureAlgorithm.HS256, secretKey)
                 .compact();
     }

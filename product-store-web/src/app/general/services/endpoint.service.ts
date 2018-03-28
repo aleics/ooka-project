@@ -26,4 +26,16 @@ export class EndpointService {
   public getLoginEndpoint(): string {
     return `${this.getUserMngmtEndpoint()}/v1/login`;
   }
+
+  public getChatEndpoint(): string {
+    return `${this.storeBaseUrl}/chat/api`;
+  }
+
+  public getChannelsEndpoint(): string {
+    return `${this.getChatEndpoint()}/v1/channels`;
+  }
+
+  public getMessagesEndpoint(channelId: string): string {
+    return `${this.getChatEndpoint()}/v1/channels/${channelId}/messages`;
+  }
 }

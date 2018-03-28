@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
-import { Credentials, TokenData } from '../../models';
+import { Credentials } from '../../models';
 import { StorageService } from '../../../general/services/storage.service';
 import { Router } from '@angular/router';
 
@@ -29,8 +29,8 @@ export class LoginComponent implements OnInit {
   login() {
     const credentials: Credentials = this.loginForm.value;
     this.loginService.login(credentials)
-      .subscribe((tokenData: TokenData) => {
-        this.storageService.saveTokenData(tokenData);
+      .subscribe((token: string) => {
+        this.storageService.saveToken(token);
         this.router.navigate(['/home']);
       });
   }

@@ -45,6 +45,14 @@ services:
       store-network:
         ipv4_address: 172.11.0.5
 
+  chat:
+    image: chat
+    container_name: chat
+    restart: always
+    networks:
+      store-network:
+        ipv4_address: 172.11.0.7
+
 
 networks:
   store-network:
