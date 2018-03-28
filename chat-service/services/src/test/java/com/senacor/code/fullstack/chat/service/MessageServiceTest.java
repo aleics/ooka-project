@@ -26,7 +26,7 @@ public class MessageServiceTest {
     public void setup() {
 
         when(channelService.existsChannel(channel)).thenReturn(true);
-        when(chatMessageRepository.findByChannelIdOrderByCreationTimestampDesc(channel))
+        when(chatMessageRepository.findByChannelIdOrderByCreationTimestampAsc(channel))
                 .thenReturn(Lists.newArrayList(
                         new ChatMessage("dev", "sender@test.de", "Hello"),
                         new ChatMessage("dev", "sender@test.de", "World!")

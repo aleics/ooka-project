@@ -1,4 +1,5 @@
 export interface TokenData {
-  token: string;
-  accountType: string;
+  sub: string;
+  exp: number;
+  user: string;
 }

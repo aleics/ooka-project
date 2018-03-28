@@ -2,7 +2,10 @@ package org.ooka.usermngmt.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.ooka.usermngmt.domain.CredentialsMessage;
+import org.ooka.usermngmt.domain.User;
 import org.ooka.usermngmt.services.JwtService;
+import org.ooka.usermngmt.services.UsersService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,11 +24,14 @@ import java.util.Collections;
 public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
     static final String TOKEN_PREFIX = "Bearer";
 
+    UsersService usersService;
+
     JwtService jwtService = new JwtService();
 
-    public JWTLoginFilter(String url, AuthenticationManager authManager) {
+    public JWTLoginFilter(String url, AuthenticationManager authManager, UsersService usersService) {
         super(new AntPathRequestMatcher(url));
         setAuthenticationManager(authManager);
+        this.usersService = usersService;
     }
 
     @Override
@@ -63,19 +69,9 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
             HttpServletResponse res,
             FilterChain chain,
             Authentication auth) {
-        String token = jwtService.createUserJwt(auth.getName());
+        User user = this.usersService.getUserByEmail(auth.getName());
+        String token = jwtService.createUserJwt(user);
 
         res.addHeader(HttpHeaders.AUTHORIZATION, TOKEN_PREFIX + " " + token);
-
-        try {
-            PrintWriter printWriter = res.getWriter();
-            ObjectMapper mapper = new ObjectMapper();
-            String jsonString = mapper.writeValueAsString(auth.getAuthorities());
-
-            printWriter.write(jsonString);
-            printWriter.flush();
-        } catch (Exception e) {
-            System.out.println("ERROR: Couldn't set the body in the login request. Exception: " + e.getMessage());
-        }
     }
 }

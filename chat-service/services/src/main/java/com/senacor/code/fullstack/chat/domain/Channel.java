@@ -14,6 +14,8 @@ public class Channel {
 
     private String name;
 
+    public Channel() {}
+
     public Channel(String id, String name) {
         this.id = id;
         this.name = name;
