@@ -23389,7 +23389,7 @@
 											},
 											"edgePosition": 1,
 											"underline": false,
-											"text": "9 : ChatWithSupport",
+											"text": "9 : getAllMessages",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -24089,9 +24089,9 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 614,
+											"left": 612,
 											"top": 444,
-											"width": 95,
+											"width": 99,
 											"height": 13,
 											"autoResize": false,
 											"alpha": 1.5707963267948966,
@@ -24101,7 +24101,7 @@
 											},
 											"edgePosition": 1,
 											"underline": false,
-											"text": "12 : ChatFinishe",
+											"text": "12 : allMessages",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -24754,7 +24754,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFiV5VbzkGHNfI="
 							},
-							"name": "ChatWithSupport",
+							"name": "getAllMessages",
 							"source": {
 								"$ref": "AAAAAAFiV5ZevEHJsT8="
 							},
@@ -24805,7 +24805,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFiV5VbzkGHNfI="
 							},
-							"name": "ChatFinishe",
+							"name": "allMessages",
 							"source": {
 								"$ref": "AAAAAAFiV5r3hkMMc2s="
 							},
