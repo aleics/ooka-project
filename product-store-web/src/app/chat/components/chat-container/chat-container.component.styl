@@ -4,13 +4,20 @@
   height: calc(100% - 55px)
   width: 100%
 
-  .channelSelector
+  .header
     position: fixed
     width: 100%
     padding: 10px 15px
     margin-top: -5px
     background-color: $bg-color
     z-index: 5
+
+    .refreshBtn
+      background-color: $primary
+      margin-top: 10px
+      border: none
+      &:hover
+        background-color: $primary-hover
 
   .chatBodyContainer
     width: 100%

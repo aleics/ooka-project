@@ -46,6 +46,10 @@ export class ChatContainerComponent implements OnInit {
   ngOnInit() {
     this.user = this.storageService.getUserData();
 
+    this.getMessages();
+  }
+
+  getMessages() {
     if (this.isAdmin) {
       this.getMessagesForAdmin()
       .subscribe((messages) => this.loadMessages(messages));
@@ -65,7 +69,7 @@ export class ChatContainerComponent implements OnInit {
     }
   }
 
-  getMessagesForAdmin() {
+  private getMessagesForAdmin() {
     return this.getCurrentChannels()
     .flatMap((channels) => {
       if (channels && channels.length > 0) {
@@ -79,7 +83,7 @@ export class ChatContainerComponent implements OnInit {
     });
   }
 
-  getMessagesForUser(inputChannel: ChatChannel) {
+  private getMessagesForUser(inputChannel: ChatChannel) {
     return this.fetchMessages(inputChannel)
       .flatMap(({channel, messages}) => {
         this.currentChannelId = channel.id;
@@ -99,6 +103,11 @@ export class ChatContainerComponent implements OnInit {
         this.messages.push(chatMessage);
         this.scrollToBottom();
       });
+  }
+
+  refresh() {
+    this.isLoading = true;
+    this.getMessages();
   }
 
   changeChannel(event: MatSelectChange) {

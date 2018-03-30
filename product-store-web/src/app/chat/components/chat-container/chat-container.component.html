@@ -1,13 +1,17 @@
 <div class="wrapper" #container>
 
-  <div *ngIf="showChannelSelector" class="channelSelector">
-    <mat-form-field>
+  <div class="header">
+    <mat-form-field *ngIf="showChannelSelector">
       <mat-select placeholder="Select channel" [value]="currentChannelId" (selectionChange)="changeChannel($event)">
         <mat-option *ngFor="let channel of channels" [value]="channel.id">
           {{ channel.name }}
         </mat-option>
       </mat-select>
     </mat-form-field>
+
+    <button class="refreshBtn btn btn-xs btn-primary pull-right" (click)="refresh()">
+      <i class="fa fa-refresh"></i>
+    </button>
   </div>
 
   <div class="chatBodyContainer" [class.adminLayout]="showChannelSelector">
