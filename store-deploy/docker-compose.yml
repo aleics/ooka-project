@@ -16,6 +16,43 @@ services:
     networks:
       store-network:
         ipv4_address: 172.11.0.4
+    volumes_from:
+    - store-db
+
+  store-db:
+    image: productstore-db
+    restart: always
+    container_name: product-store-db
+    networks:
+      store-network:
+        ipv4_address: 172.11.0.6
+    volumes:
+    - /var/lib/postgresql/data
+
+  store-web:
+    image: productstore-web
+    restart: always
+    container_name: product-store-web
+    networks:
+      store-network:
+        ipv4_address: 172.11.0.2
+
+  usermngmt:
+    image: usermngmt
+    container_name: usermngmt
+    restart: always
+    networks:
+      store-network:
+        ipv4_address: 172.11.0.5
+
+  chat:
+    image: chat
+    container_name: chat
+    restart: always
+    networks:
+      store-network:
+        ipv4_address: 172.11.0.7
+
 
 networks:
   store-network:

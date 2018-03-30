@@ -7,6 +7,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { StoreModule } from './store/store.module';
 import { GeneralModule } from './general/general.module';
 import { ProductModule } from './product/product.module';
+import { LoginModule } from './login/login.module';
 
 import {
   MatSidenavModule
@@ -14,10 +15,13 @@ import {
 
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
+import { InitComponent } from './init.component';
+import { ChatModule } from './chat/chat.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    InitComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +30,8 @@ import { appRoutes } from './app.routes';
     StoreModule,
     ProductModule,
     GeneralModule,
+    LoginModule,
+    ChatModule,
     ReactiveFormsModule,
     FormsModule,
 

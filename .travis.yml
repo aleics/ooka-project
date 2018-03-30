@@ -8,6 +8,22 @@ matrix:
       script:
         - mvn clean verify
 
+    - language: java
+      dist: trusty
+      sudo: false
+      before_script:
+        - cd usermngmt
+      script:
+        - mvn clean verify
+
+    - language: java
+      dist: trusty
+      sudo: false
+      before_script:
+        - cd chat-service/services
+      script:
+        - mvn clean verify
+
     - language: node_js
       dist: trusty
       node_js:

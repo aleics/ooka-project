@@ -1,0 +1,17 @@
+<project name="maven-antrun-" default="Build Angular frontend application"  >
+<target name="Build Angular frontend application">
+ <exec failonerror="true" dir="/Users/glaser/dev/hbrs/codecamp/frontend" executable="cmd" osfamily="windows">
+  <arg line="/c npm install"/>
+ </exec>
+ <exec failonerror="true" dir="/Users/glaser/dev/hbrs/codecamp/frontend" executable="npm" osfamily="unix">
+  <arg line="install"/>
+ </exec>
+ <exec failonerror="true" dir="/Users/glaser/dev/hbrs/codecamp/frontend" executable="cmd" osfamily="windows">
+  <arg line="/c ng build --prod --preserve-symlinks"/>
+ </exec>
+ <exec failonerror="true" dir="/Users/glaser/dev/hbrs/codecamp/frontend" executable="ng" osfamily="unix">
+  <arg line="build --prod"/>
+ </exec>
+</target>
+
+</project>

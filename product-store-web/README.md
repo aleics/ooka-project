@@ -25,3 +25,21 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+## Build
+```
+ng build --prod
+```
+
+## Create image
+```
+sudo docker build -t productstore-web .
+```
+
+## Notes
+## Log in page
+  * Use an angular guard for user authentication: https://medium.com/@ryanchenkie_40935/angular-authentication-using-route-guards-bf7a4ca13ae3
+  * Redirect to log in page, if auth token is not present or not valid.
+  * Log in page is a form with two inputs: https://angular.io/guide/forms
+  * Create a service in login module, where the user name and password will be sent to usermngmt service (look products.service.ts).

@@ -1,0 +1,15 @@
+<div class="msgContainer">
+  <div class="header">
+    <i class="fa fa-user-circle userIcon" aria-hidden="true"></i>
+    <span>{{ message.sender }}</span>
+  </div>
+  <ng-template #userTemplate>
+    <span class="user">
+      {{ message.sender }}
+    </span>
+  </ng-template>
+  <div class="message">
+    <pre>{{ message.message }}</pre>
+  </div>
+  <div class="timeContainer">{{ date.toDateString() }}</div>
+</div>

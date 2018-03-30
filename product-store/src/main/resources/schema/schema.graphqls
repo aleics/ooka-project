@@ -1,10 +1,15 @@
 schema {
   query: Query
+  mutation: Mutation
 }
 
 type Query {
-  allProducts: [Product]
+  allProducts(filter: AllProductsFilter): [Product]
   product(filter: ProductFilter!): Product
+}
+
+input AllProductsFilter {
+    q: String!
 }
 
 input ProductFilter {
@@ -17,4 +22,8 @@ type Product {
   description: String!
   price: Float!
   available: Boolean!
+}
+
+type Mutation {
+  createProduct(name: String!, description: String, price: Float!, available: Boolean!): Product
 }

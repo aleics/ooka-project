@@ -1,0 +1,21 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 hidden-sm hidden-xs text-center">
+      <div style="color: #0b7cde;margin-top: 10px;background-color: azure;border-radius: 10px;border: 2px #0b7cde solid;">
+        <div style="font-size: xx-large;">WirSchiff<i>en</i>Das</div>
+        <div style="color: black;">GmbH &amp; Co KGaA</div>
+      </div>
+    </div>
+    <div class="col-md-4 text-center">
+      <h1>Chat</h1>
+    </div>
+    <div class="col-md-4 user">
+      <span>Hello {{user.name}} ({{user.email}})</span>
+    </div>
+  </div>
+
+  <app-channel-selector (onChannelSelected)="onChannelSelected($event)"></app-channel-selector>
+
+  <app-messages [currentChannel]="currentChannel"></app-messages>
+</div>

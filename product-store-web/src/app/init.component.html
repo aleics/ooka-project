@@ -1,0 +1,13 @@
+<ps-topbar
+  (toggleSidebar)="sidenav.toggle()"
+  (logout)="logout()">
+</ps-topbar>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="side">
+    <ps-sidebar [chatAvailable]="chatAvailable"></ps-sidebar>
+  </mat-sidenav>
+
+  <mat-sidenav-content (click)="sidenav.close()">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

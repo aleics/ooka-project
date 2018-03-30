@@ -1,0 +1,30 @@
+<div class="wrapper" #container>
+
+  <div *ngIf="showChannelSelector" class="channelSelector">
+    <mat-form-field>
+      <mat-select placeholder="Select channel" [value]="currentChannelId" (selectionChange)="changeChannel($event)">
+        <mat-option *ngFor="let channel of channels" [value]="channel.id">
+          {{ channel.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="chatBodyContainer" [class.adminLayout]="showChannelSelector">
+    <div *ngIf="isLoading; else chatTemplate">
+        <ps-spinner></ps-spinner>
+    </div>
+    <ng-template #chatTemplate>
+        <ps-chat-body
+          [messages]="messages">
+        </ps-chat-body>
+    </ng-template>
+  </div>
+
+  <div class="chatInputContainer">
+    <ps-chat-input
+      [disabled]="isInputDisabled"
+      (send)="sendMessage($event)">
+    </ps-chat-input>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div>
   <div class="col-md-12">
     <div *ngIf="isLoading; then spinnerTemplate else productTemplate"></div>
 
@@ -30,6 +30,13 @@
 
             <strong>Price:</strong>
             <span>${{ product.price }}</span>
+
+            <div *ngIf="chatAvailable" class="btnContainer">
+              <a class="btn btn-primary pull-right" (click)="goToChat()">
+                <span>Support </span>
+                <i class="fa fa-comments"></i>
+              </a>
+            </div>
           </div>
         </div>
       </div>

@@ -8,4 +8,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 export class TopbarComponent {
   @Output()
   public toggleSidebar: EventEmitter<void> = new EventEmitter();
+
+  @Output()
+  public logout: EventEmitter<void> = new EventEmitter();
 }

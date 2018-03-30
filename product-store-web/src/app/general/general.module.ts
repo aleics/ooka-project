@@ -9,7 +9,8 @@ import {
 } from './components';
 import {
   ProductsService,
-  EndpointService
+  EndpointService,
+  StorageService
 } from './services';
 
 
@@ -29,7 +30,8 @@ import {
   ],
   providers: [
     ProductsService,
-    EndpointService
+    EndpointService,
+    StorageService
   ],
   bootstrap: [
     PageNotFoundComponent,
