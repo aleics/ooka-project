@@ -75,7 +75,7 @@ export class ChatContainerComponent implements OnInit {
     return this.getCurrentChannels()
     .flatMap((channels) => {
       if (channels && channels.length > 0) {
-        const channelId = channels[0].id;
+        const channelId = this.currentChannelId || channels[0].id;
         this.channels = channels;
         this.currentChannelId = channelId;
         return this.messagesService.readMessages(channelId);
