@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatSelectChange } from '@angular/material';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { ChannelsService, MessagesService } from '../../services';
 import { StorageService } from '../../../general/services';
@@ -38,7 +38,8 @@ export class ChatContainerComponent implements OnInit {
     private storageService: StorageService,
     private channelsService: ChannelsService,
     private messagesService: MessagesService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   // if user role is ADMIN: load all chat channels
@@ -64,6 +65,7 @@ export class ChatContainerComponent implements OnInit {
           this.loadMessages(messages);
           if (productData) {
             this.sendMessage(this.createProductInfoMessage(productData));
+            this.router.navigate(['chat']);
           }
         });
     }
